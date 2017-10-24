@@ -1,0 +1,16 @@
+{
+  "name": "quill-blot-resize",
+  "version": "1.0.0",
+  "description": "a module for the Quill text editor to allow blots to be resized",
+  "main": "dist/index.js",
+  "author": "nmonterroso <nmonterroso@users.noreply.github.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-flow": "^6.23.0",
+    "flow-bin": "^0.57.3"
+  },
+  "scripts": {
+    "build": "babel src/ -d dist/src"
+  }
+}
