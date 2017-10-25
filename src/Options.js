@@ -1,20 +1,26 @@
 // @flow
 
-import Module from './modules/Module';
-import Toolbar from './modules/Toolbar';
+import typeof Action from './actions/Action';
+import Toolbar from './actions/Toolbar';
+import BlotSpec from './specs/BlotSpec';
+import ImageSpec from './specs/ImageSpec';
 
 export type BlotResizeOptions = {
-  modules?: Module[],
-  overlay?: {
-    className?: string,
-    styled?: boolean,
-    styles?: {}
+  actions: Action[],
+  specs: BlotSpec[],
+  overlay: {
+    className: string,
+    styled: boolean,
+    styles: {}
   }
 };
 
 const DefaultOptions:BlotResizeOptions = {
-  modules: [
+  actions: [
     Toolbar,
+  ],
+  specs: [
+    new ImageSpec(),
   ],
   overlay: {
     className: 'blot-resize__overlay',

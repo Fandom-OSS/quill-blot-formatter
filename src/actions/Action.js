@@ -2,7 +2,7 @@
 
 import BlotResize from '../BlotResize';
 
-export default class Module {
+export default class Action {
   resizer: BlotResize;
 
   constructor(resizer: BlotResize) {
