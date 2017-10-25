@@ -2,7 +2,7 @@
 
 import Action from './Action';
 
-export default class Toolbar extends Action {
+export default class Alignment extends Action {
   toolbar: any;
 
   onCreate() {

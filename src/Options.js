@@ -1,7 +1,7 @@
 // @flow
 
 import typeof Action from './actions/Action';
-import Toolbar from './actions/Toolbar';
+import Alignment from './actions/Alignment';
 import BlotSpec from './specs/BlotSpec';
 import ImageSpec from './specs/ImageSpec';
 
@@ -17,7 +17,7 @@ export type BlotResizeOptions = {
 
 const DefaultOptions:BlotResizeOptions = {
   actions: [
-    Toolbar,
+    Alignment,
   ],
   specs: [
     new ImageSpec(),
