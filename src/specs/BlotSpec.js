@@ -1,18 +1,9 @@
 // @flow
 
-export default class BlotSpec {
-  blotName: string;
+export interface BlotSpec {
+  static canHandle(el: HTMLElement): boolean;
+  static create(el: HTMLElement): BlotSpec;
 
-  constructor(blotName: string) {
-    this.blotName = blotName;
-  }
-
-  canHandle(el: HTMLElement) {
-    return el.tagName === this.blotName;
-  }
-
-  // eslint-disable-next-line class-methods-use-this
-  getResizeTarget(el: HTMLElement) {
-    return el;
-  }
+  getResizeTarget(): HTMLElement;
+  getOverlayTarget(): HTMLElement;
 }

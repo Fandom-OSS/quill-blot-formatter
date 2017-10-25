@@ -1,13 +1,13 @@
 // @flow
 
-import typeof Action from './actions/Action';
+import Action from './actions/Action';
 import Alignment from './actions/Alignment';
-import BlotSpec from './specs/BlotSpec';
+import { BlotSpec } from './specs/BlotSpec';
 import ImageSpec from './specs/ImageSpec';
 
 export type BlotResizeOptions = {
-  actions: Action[],
-  specs: BlotSpec[],
+  actions: Class<Action>[],
+  specs: Class<BlotSpec>[],
   overlay: {
     className: string,
     styled: boolean,
@@ -20,7 +20,7 @@ const DefaultOptions:BlotResizeOptions = {
     Alignment,
   ],
   specs: [
-    new ImageSpec(),
+    ImageSpec,
   ],
   overlay: {
     className: 'blot-resize__overlay',
