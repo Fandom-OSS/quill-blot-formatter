@@ -2,13 +2,13 @@
 
 import Action from './actions/Action';
 import Alignment from './actions/Alignment';
+import Delete from './actions/Delete';
 import { BlotSpec } from './specs/BlotSpec';
 import ImageSpec from './specs/ImageSpec';
 
 export type BlotResizeOptions = {
   actions: Class<Action>[],
   specs: Class<BlotSpec>[],
-  handleDelete: boolean,
   overlay: {
     className: string,
     styled: boolean,
@@ -19,6 +19,7 @@ export type BlotResizeOptions = {
 const DefaultOptions:BlotResizeOptions = {
   actions: [
     Alignment,
+    Delete,
   ],
   specs: [
     ImageSpec,
@@ -32,7 +33,6 @@ const DefaultOptions:BlotResizeOptions = {
       border: '1px dashed #444',
     },
   },
-  handleDelete: true,
 };
 
 export default DefaultOptions;

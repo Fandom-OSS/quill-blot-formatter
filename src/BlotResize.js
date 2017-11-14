@@ -1,9 +1,9 @@
 // @flow
 
-import Quill from 'quill';
 import deepmerge from 'deepmerge';
 import type { BlotResizeOptions } from './Options';
 import DefaultOptions from './Options';
+import Action from './actions/Action';
 import { BlotSpec } from './specs/BlotSpec';
 
 const dontMerge = (destination: Array<any>, source: Array<any>) => source;
@@ -13,11 +13,13 @@ export default class BlotResize {
   options: BlotResizeOptions;
   currentSpec: ?BlotSpec;
   overlay: HTMLElement;
+  actions: Action[];
 
   constructor(quill: any, options: $Shape<BlotResizeOptions> = {}) {
     this.quill = quill;
     this.options = deepmerge(DefaultOptions, options, { arrayMerge: dontMerge });
     this.currentSpec = null;
+    this.actions = [];
     this.overlay = document.createElement('div');
     this.overlay.classList.add(this.options.overlay.className);
     if (this.options.overlay.styled) {
@@ -36,7 +38,7 @@ export default class BlotResize {
     this.setUserSelect('none');
     this.quill.root.parentNode.appendChild(this.overlay);
     this.repositionOverlay();
-    this.bindDeleteListener();
+    this.createActions();
   }
 
   hide() {
@@ -48,21 +50,20 @@ export default class BlotResize {
     this.quill.root.parentNode.removeChild(this.overlay);
     this.overlay.style.setProperty('display', 'none');
     this.setUserSelect('');
-    this.unbindDeleteListener();
+    this.destroyActions();
   }
 
-  bindDeleteListener() {
-    if (this.options.handleDelete) {
-      document.addEventListener('keyup', this.onKeyUp, true);
-      this.quill.root.addEventListener('input', this.onKeyUp, true);
-    }
+  createActions() {
+    this.actions = this.options.actions.map((ActionClass: Class<Action>) => {
+      const action: Action = new ActionClass(this);
+      action.onCreate();
+      return action;
+    });
   }
 
-  unbindDeleteListener() {
-    if (this.options.handleDelete) {
-      document.removeEventListener('keyup', this.onKeyUp);
-      this.quill.root.removeEventListener('input', this.onKeyUp);
-    }
+  destroyActions() {
+    this.actions.forEach((action: Action) => action.onDestroy());
+    this.actions = [];
   }
 
   repositionOverlay() {
@@ -127,19 +128,4 @@ export default class BlotResize {
 
     this.show(nextSpec, nextEl);
   }
-
-  onKeyUp = (e: KeyboardEvent) => {
-    if (!this.currentSpec) {
-      return;
-    }
-
-    // delete or backspace
-    if (e.keyCode === 46 || e.keyCode === 8) {
-      const blot = Quill.find(this.currentSpec.getTargetElement());
-      if (blot) {
-        blot.deleteAt(0);
-      }
-      this.hide();
-    }
-  };
 }
