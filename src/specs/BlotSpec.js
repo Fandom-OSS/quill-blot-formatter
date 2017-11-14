@@ -4,6 +4,6 @@ export interface BlotSpec {
   static canHandle(el: HTMLElement): boolean;
   static create(el: HTMLElement): BlotSpec;
 
-  getResizeTarget(): HTMLElement;
+  getTargetElement(): HTMLElement;
   getOverlayTarget(): HTMLElement;
 }

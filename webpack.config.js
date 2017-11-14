@@ -6,4 +6,7 @@ module.exports = {
     libraryTarget: 'umd',
     library: 'QuillBlotResize',
   },
+  externals: {
+    quill: 'Quill',
+  },
 };

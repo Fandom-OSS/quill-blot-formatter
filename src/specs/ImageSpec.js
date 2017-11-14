@@ -16,7 +16,7 @@ export default class ImageSpec implements BlotSpec {
     this.el = el;
   }
 
-  getResizeTarget(): HTMLElement {
+  getTargetElement(): HTMLElement {
     return this.el;
   }
 

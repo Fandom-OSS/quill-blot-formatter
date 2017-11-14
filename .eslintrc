@@ -5,5 +5,11 @@
   ],
   "plugins": [
     "flowtype"
-  ]
+  ],
+  "env": {
+    "browser": true
+  },
+  "rules": {
+    "no-mixed-operators": 0
+  }
 }

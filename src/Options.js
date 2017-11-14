@@ -8,6 +8,7 @@ import ImageSpec from './specs/ImageSpec';
 export type BlotResizeOptions = {
   actions: Class<Action>[],
   specs: Class<BlotSpec>[],
+  handleDelete: boolean,
   overlay: {
     className: string,
     styled: boolean,
@@ -31,6 +32,7 @@ const DefaultOptions:BlotResizeOptions = {
       border: '1px dashed #444',
     },
   },
+  handleDelete: true,
 };
 
 export default DefaultOptions;
