@@ -113,7 +113,7 @@ export default class DefaultToolbar implements Toolbar {
     alignmentHelper: Aligner,
   ) {
     this.buttons.forEach(this.deselectButton);
-    if (alignment.isApplied(resizeTarget)) {
+    if (alignmentHelper.isAligned(resizeTarget, alignment)) {
       if (this.allowDeselect) {
         alignmentHelper.clear(resizeTarget);
       } else {

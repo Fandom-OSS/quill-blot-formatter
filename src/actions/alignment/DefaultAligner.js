@@ -40,7 +40,6 @@ export default class DefaultAligner implements Aligner {
   alignAttribute: any;
   manageStyle: boolean;
 
-  // TODO: it's weird that each alignment has isApplied. that should be part of AlignmentHelper
   constructor(setStyle: boolean = true) {
     this.manageStyle = setStyle;
     this.floatStyle = new Parchment.Attributor.Style('float', 'float');
@@ -49,28 +48,28 @@ export default class DefaultAligner implements Aligner {
     this.alignAttribute = new Parchment.Attributor.Attribute(ALIGN_ATTRIBUTE, ALIGN_ATTRIBUTE);
     this.alignments = {
       [DEFAULT_ALIGNMENTS.left]: {
+        name: DEFAULT_ALIGNMENTS.left,
         icon: DEFAULT_ICONS[DEFAULT_ALIGNMENTS.left],
         apply: (el: HTMLElement) => {
           this.setAlignment(el, DEFAULT_ALIGNMENTS.left);
           this.setStyle(el, 'inline', 'left', '0 1em 1em 0');
         },
-        isApplied: (el: HTMLElement) => this.isAligned(el, DEFAULT_ALIGNMENTS.left),
       },
       [DEFAULT_ALIGNMENTS.center]: {
+        name: DEFAULT_ALIGNMENTS.center,
         icon: DEFAULT_ICONS[DEFAULT_ALIGNMENTS.center],
         apply: (el: HTMLElement) => {
           this.setAlignment(el, DEFAULT_ALIGNMENTS.center);
           this.setStyle(el, 'block', null, 'auto');
         },
-        isApplied: (el: HTMLElement) => this.isAligned(el, DEFAULT_ALIGNMENTS.center),
       },
       [DEFAULT_ALIGNMENTS.right]: {
+        name: DEFAULT_ALIGNMENTS.right,
         icon: DEFAULT_ICONS[DEFAULT_ALIGNMENTS.right],
         apply: (el: HTMLElement) => {
           this.setAlignment(el, DEFAULT_ALIGNMENTS.right);
           this.setStyle(el, 'inline', 'right', '0 0 1em 1em');
         },
-        isApplied: (el: HTMLElement) => this.isAligned(el, DEFAULT_ALIGNMENTS.right),
       },
     };
   }
@@ -87,7 +86,7 @@ export default class DefaultAligner implements Aligner {
         return;
       }
 
-      if (candidate.isApplied(el)) {
+      if (this.isAligned(el, candidate)) {
         alignment = candidate;
       }
     });
@@ -122,7 +121,7 @@ export default class DefaultAligner implements Aligner {
     }
   }
 
-  isAligned(el: HTMLElement, alignment: string): boolean {
-    return this.alignAttribute.value(el) === alignment;
+  isAligned(el: HTMLElement, alignment: Alignment): boolean {
+    return this.alignAttribute.value(el) === alignment.name;
   }
 }
