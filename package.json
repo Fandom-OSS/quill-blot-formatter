@@ -24,9 +24,10 @@
     "webpack": "^3.8.1"
   },
   "scripts": {
-    "start": "npm-run-all --serial build:babel --parallel dev:babel dev:webpack",
+    "start": "npm-run-all --race --parallel dev:babel dev:webpack",
     "dev:babel": "babel --watch src/ --out-dir dist/src",
-    "dev:webpack": "webpack --progress --colors --watch",
+    "dev:webpack": "yarn dev:delay && webpack --progress --colors --watch",
+    "dev:delay": "node -e \"setTimeout(() => {}, 3000)\"",
     "build": "yarn build:babel && yarn build:webpack",
     "build:babel": "babel src/ --out-dir dist/src",
     "build:webpack": "webpack -p --progress --colors"
