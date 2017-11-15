@@ -32,8 +32,10 @@ const buttonStyle = {
 export default class DefaultToolbar implements Toolbar {
   toolbar: ?HTMLElement;
   buttons: HTMLElement[];
+  allowDeselect: boolean;
 
-  constructor() {
+  constructor(allowDeselect: boolean = false) {
+    this.allowDeselect = allowDeselect;
     this.toolbar = null;
     this.buttons = [];
   }
@@ -74,6 +76,7 @@ export default class DefaultToolbar implements Toolbar {
   addButtons(resizer: BlotResize, toolbar: HTMLElement, alignmentHelper: AlignmentHelper) {
     alignmentHelper.getAlignments().forEach((alignment, i) => {
       const button = document.createElement('span');
+      button.classList.add('blot-resize__toolbar-button');
       button.innerHTML = alignment.icon;
       button.addEventListener('click', () => {
         this.onButtonClick(button, resizer, alignment, alignmentHelper);
@@ -111,8 +114,11 @@ export default class DefaultToolbar implements Toolbar {
   ) {
     this.buttons.forEach(this.deselectButton);
     if (alignment.isApplied(resizeTarget)) {
-      // TODO: account for case where users can't deselect an alignment
-      alignmentHelper.clear(resizeTarget);
+      if (this.allowDeselect) {
+        alignmentHelper.clear(resizeTarget);
+      } else {
+        this.selectButton(button);
+      }
     } else {
       this.selectButton(button);
       alignment.apply(resizeTarget);

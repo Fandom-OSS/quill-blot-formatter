@@ -39,12 +39,10 @@ export default class DefaultAlignmentHelper implements AlignmentHelper {
   displayStyle: any;
   alignAttribute: any;
   manageStyle: boolean;
-  allowDeselect: boolean;
 
   // TODO: it's weird that each alignment has isApplied. that should be part of AlignmentHelper
-  constructor(setStyle: boolean = true, allowDeselect: boolean = true) {
+  constructor(setStyle: boolean = true) {
     this.manageStyle = setStyle;
-    this.allowDeselect = allowDeselect;
     this.floatStyle = new Parchment.Attributor.Style('float', 'float');
     this.marginStyle = new Parchment.Attributor.Style('margin', 'margin');
     this.displayStyle = new Parchment.Attributor.Style('display', 'display');
