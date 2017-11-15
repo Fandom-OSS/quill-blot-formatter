@@ -7,7 +7,7 @@ import { Aligner } from './Aligner';
 import { Toolbar } from './Toolbar';
 import DefaultToolbar from './DefaultToolbar';
 
-export default class AlignmentAction extends Action {
+export default class AlignAction extends Action {
   toolbar: Toolbar;
   alignmentHelper: Aligner;
 
