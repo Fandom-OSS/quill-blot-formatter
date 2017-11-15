@@ -49,11 +49,11 @@ export default class DefaultToolbar implements Toolbar {
     this.buttons = [];
   }
 
-  create(resizer: BlotResize, alignmentHelper: Aligner): HTMLElement {
+  create(resizer: BlotResize, aligner: Aligner): HTMLElement {
     const toolbar = document.createElement('div');
     toolbar.classList.add('blot-resize__toolbar');
     this.addToolbarStyle(toolbar);
-    this.addButtons(resizer, toolbar, alignmentHelper);
+    this.addButtons(resizer, toolbar, aligner);
 
     this.toolbar = toolbar;
     return this.toolbar;
@@ -82,15 +82,15 @@ export default class DefaultToolbar implements Toolbar {
     Object.assign(button.children[0].style, svgStyle);
   }
 
-  addButtons(resizer: BlotResize, toolbar: HTMLElement, alignmentHelper: Aligner) {
-    alignmentHelper.getAlignments().forEach((alignment, i) => {
+  addButtons(resizer: BlotResize, toolbar: HTMLElement, aligner: Aligner) {
+    aligner.getAlignments().forEach((alignment, i) => {
       const button = document.createElement('span');
       button.classList.add('blot-resize__toolbar-button');
       button.innerHTML = alignment.icon;
       button.addEventListener('click', () => {
-        this.onButtonClick(button, resizer, alignment, alignmentHelper);
+        this.onButtonClick(button, resizer, alignment, aligner);
       });
-      this.preselectButton(button, alignment, resizer, alignmentHelper);
+      this.preselectButton(button, alignment, resizer, aligner);
       this.addButtonStyle(button, i);
       this.buttons.push(button);
       toolbar.appendChild(button);
@@ -101,7 +101,7 @@ export default class DefaultToolbar implements Toolbar {
     button: HTMLElement,
     alignment: Alignment,
     resizer: BlotResize,
-    alignmentHelper: Aligner,
+    aligner: Aligner,
   ) {
     if (!resizer.currentSpec) {
       return;
@@ -112,7 +112,7 @@ export default class DefaultToolbar implements Toolbar {
       return;
     }
 
-    if (alignmentHelper.isAligned(target, alignment)) {
+    if (aligner.isAligned(target, alignment)) {
       this.selectButton(button);
     }
   }
@@ -121,7 +121,7 @@ export default class DefaultToolbar implements Toolbar {
     button: HTMLElement,
     resizer: BlotResize,
     alignment: Alignment,
-    alignmentHelper: Aligner,
+    aligner: Aligner,
   ) {
     if (!resizer.currentSpec) {
       return;
@@ -132,7 +132,7 @@ export default class DefaultToolbar implements Toolbar {
       return;
     }
 
-    this.clickButton(button, target, resizer, alignment, alignmentHelper);
+    this.clickButton(button, target, resizer, alignment, aligner);
   }
 
   clickButton(
@@ -140,12 +140,12 @@ export default class DefaultToolbar implements Toolbar {
     resizeTarget: HTMLElement,
     resizer: BlotResize,
     alignment: Alignment,
-    alignmentHelper: Aligner,
+    aligner: Aligner,
   ) {
     this.buttons.forEach(this.deselectButton);
-    if (alignmentHelper.isAligned(resizeTarget, alignment)) {
+    if (aligner.isAligned(resizeTarget, alignment)) {
       if (this.allowDeselect) {
-        alignmentHelper.clear(resizeTarget);
+        aligner.clear(resizeTarget);
       } else {
         this.selectButton(button);
       }
