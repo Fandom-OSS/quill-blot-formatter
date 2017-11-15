@@ -34,7 +34,7 @@ export default class DefaultToolbar implements Toolbar {
   buttons: HTMLElement[];
   allowDeselect: boolean;
 
-  constructor(allowDeselect: boolean = false) {
+  constructor(allowDeselect: boolean = true) {
     this.allowDeselect = allowDeselect;
     this.toolbar = null;
     this.buttons = [];
