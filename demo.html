@@ -3,15 +3,43 @@
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.4/quill.js"></script>
   <script type="text/javascript" src="dist/index.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.4/quill.snow.min.css">
+  <style>
+    html {
+      height: 100%;
+    }
+
+    body {
+      margin: 0;
+      height: 100%;
+    }
+
+    #scrolling-container {
+      height: 100%;
+      min-height: 100%;
+      overflow-y: auto;
+    }
+
+    #quill-container {
+      height: auto;
+      min-height: 100%;
+      padding: 20px;
+    }
+
+    #quill-container .ql-editor {
+      overflow-y: visible;
+    }
+  </style>
 </head>
 <body>
 
 
-<div id="editor">
-  <p>Hi! Here is an image...</p>
-  <p><img src="https://kittenrescue.org/wp-content/uploads/2017/03/KittenRescue_KittenCareHandbook.jpg" /></p>
-  <p>And here is another image...</p>
-  <p><img src="https://www.cesarsway.com/sites/newcesarsway/files/styles/large_article_preview/public/All-about-puppies--Cesar%E2%80%99s-tips%2C-tricks-and-advice.jpg?itok=bi9xUvwe" /></p>
+<div id="scrolling-container">
+  <div id="quill-container">
+    <p>Hi! Here is an image...</p>
+    <p><img src="https://kittenrescue.org/wp-content/uploads/2017/03/KittenRescue_KittenCareHandbook.jpg" /></p>
+    <p>And here is another image...</p>
+    <p><img src="https://kittenrescue.org/wp-content/uploads/2017/03/KittenRescue_KittenCareHandbook.jpg" /></p>
+  </div>
 </div>
 
 
@@ -19,8 +47,9 @@
   Quill.register({
     'modules/blotResize': QuillBlotResize.default,
   })
-  const quill = new Quill('#editor', {
+  const quill = new Quill('#quill-container', {
     theme: 'snow',
+    scrollingContainer: '#scrolling-container',
     modules: {
       blotResize: {
 
