@@ -1,26 +1,40 @@
 // @flow
 
-import { BlotSpec } from './BlotSpec';
+import BlotSpec from './BlotSpec';
+import BlotResize from '../BlotResize';
 
-export default class ImageSpec implements BlotSpec {
-  static canHandle(el: HTMLElement): boolean {
-    return el.tagName === 'IMG';
+export default class ImageSpec extends BlotSpec {
+  el: ?HTMLElement;
+
+  constructor(resizer: BlotResize) {
+    super(resizer);
+    this.el = null;
+
+    this.resizer.quill.root.addEventListener('click', this.onClick);
   }
-  static create(el: HTMLElement): ImageSpec {
-    return new ImageSpec(el);
+
+  getTargetElement(): ?HTMLElement {
+    return this.el;
   }
 
-  el: HTMLElement;
+  getOverlayTarget(): ?HTMLElement {
+    return this.el;
+  }
 
-  constructor(el: HTMLElement) {
+  onHide() {
+    this.el = null;
+  }
+
+  onClick = (event: MouseEvent) => {
+    const el = event.target;
+    if (!(el instanceof HTMLElement) || el.tagName !== 'IMG') {
+      return;
+    }
+
+    event.preventDefault();
+    event.stopPropagation();
+
     this.el = el;
-  }
-
-  getTargetElement(): HTMLElement {
-    return this.el;
-  }
-
-  getOverlayTarget(): HTMLElement {
-    return this.el;
-  }
+    this.resizer.show(this);
+  };
 }

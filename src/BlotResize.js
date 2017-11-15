@@ -4,7 +4,7 @@ import deepmerge from 'deepmerge';
 import type { BlotResizeOptions } from './Options';
 import DefaultOptions from './Options';
 import Action from './actions/Action';
-import { BlotSpec } from './specs/BlotSpec';
+import BlotSpec from './specs/BlotSpec';
 
 const dontMerge = (destination: Array<any>, source: Array<any>) => source;
 
@@ -12,6 +12,7 @@ export default class BlotResize {
   quill: any;
   options: BlotResizeOptions;
   currentSpec: ?BlotSpec;
+  specs: BlotSpec[];
   overlay: HTMLElement;
   actions: Action[];
 
@@ -29,11 +30,13 @@ export default class BlotResize {
     // disable native image resizing on firefox
     document.execCommand('enableObjectResizing', false, 'false'); // eslint-disable-line no-undef
     this.quill.root.parentNode.style.position = this.quill.root.parentNode.style.position || 'relative';
-    this.quill.root.addEventListener('click', this.onClick, false);
+
+    this.quill.root.addEventListener('click', this.onClick);
+    this.specs = this.options.specs.map((SpecClass: Class<BlotSpec>) => new SpecClass(this));
   }
 
-  show(spec: Class<BlotSpec>, el: HTMLElement) {
-    this.currentSpec = spec.create(el);
+  show(spec: BlotSpec) {
+    this.currentSpec = spec;
     this.quill.setSelection(null);
     this.setUserSelect('none');
     this.quill.root.parentNode.appendChild(this.overlay);
@@ -46,6 +49,7 @@ export default class BlotResize {
       return;
     }
 
+    this.currentSpec.onHide();
     this.currentSpec = null;
     this.quill.root.parentNode.removeChild(this.overlay);
     this.overlay.style.setProperty('display', 'none');
@@ -71,8 +75,13 @@ export default class BlotResize {
       return;
     }
 
+    const overlayTarget = this.currentSpec.getOverlayTarget();
+    if (!overlayTarget) {
+      return;
+    }
+
     const parent: HTMLElement = this.quill.root.parentNode;
-    const specRect = this.currentSpec.getOverlayTarget().getBoundingClientRect();
+    const specRect = overlayTarget.getBoundingClientRect();
     const parentRect = parent.getBoundingClientRect();
 
     Object.assign(this.overlay.style, {
@@ -101,31 +110,7 @@ export default class BlotResize {
     });
   }
 
-  onClick = (event: Event) => {
-    const nextEl = event.target;
-    if (!(nextEl instanceof HTMLElement)) {
-      return;
-    }
-
-    let nextSpec: ?Class<BlotSpec> = null;
-
-    this.options.specs.forEach((spec: Class<BlotSpec>) => {
-      if (spec.canHandle(nextEl)) {
-        nextSpec = spec;
-      }
-    });
-
-    if (!nextSpec) {
-      this.hide();
-      return;
-    }
-
-    // TODO: do we need to check if we're already focused?
-
-    if (this.currentSpec) {
-      this.hide();
-    }
-
-    this.show(nextSpec, nextEl);
+  onClick = () => {
+    this.hide();
   }
 }

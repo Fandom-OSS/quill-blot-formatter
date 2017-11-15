@@ -3,7 +3,7 @@
 import Action from './actions/Action';
 import AlignmentAction from './actions/AlignmentAction';
 import DeleteAction from './actions/DeleteAction';
-import { BlotSpec } from './specs/BlotSpec';
+import BlotSpec from './specs/BlotSpec';
 import ImageSpec from './specs/ImageSpec';
 
 export type BlotResizeOptions = {
