@@ -1,7 +1,7 @@
 // @flow
 
 import Toolbar from './Toolbar';
-import { AlignmentHelper } from './AlignmentHelper';
+import { Aligner } from './Aligner';
 import type { Alignment } from './Alignment';
 import BlotResize from '../../BlotResize';
 
@@ -40,7 +40,7 @@ export default class DefaultToolbar implements Toolbar {
     this.buttons = [];
   }
 
-  create(resizer: BlotResize, alignmentHelper: AlignmentHelper): HTMLElement {
+  create(resizer: BlotResize, alignmentHelper: Aligner): HTMLElement {
     const toolbar = document.createElement('div');
     toolbar.classList.add('blot-resize__toolbar');
     this.addToolbarStyle(toolbar);
@@ -73,7 +73,7 @@ export default class DefaultToolbar implements Toolbar {
     Object.assign(button.children[0].style, buttonStyle);
   }
 
-  addButtons(resizer: BlotResize, toolbar: HTMLElement, alignmentHelper: AlignmentHelper) {
+  addButtons(resizer: BlotResize, toolbar: HTMLElement, alignmentHelper: Aligner) {
     alignmentHelper.getAlignments().forEach((alignment, i) => {
       const button = document.createElement('span');
       button.classList.add('blot-resize__toolbar-button');
@@ -91,7 +91,7 @@ export default class DefaultToolbar implements Toolbar {
     button: HTMLElement,
     resizer: BlotResize,
     alignment: Alignment,
-    alignmentHelper: AlignmentHelper,
+    alignmentHelper: Aligner,
   ) {
     if (!resizer.currentSpec) {
       return;
@@ -110,7 +110,7 @@ export default class DefaultToolbar implements Toolbar {
     resizeTarget: HTMLElement,
     resizer: BlotResize,
     alignment: Alignment,
-    alignmentHelper: AlignmentHelper,
+    alignmentHelper: Aligner,
   ) {
     this.buttons.forEach(this.deselectButton);
     if (alignment.isApplied(resizeTarget)) {

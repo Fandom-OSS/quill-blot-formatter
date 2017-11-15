@@ -1,7 +1,7 @@
 // @flow
 
 import Quill from 'quill';
-import AlignmentHelper from './AlignmentHelper';
+import { Aligner } from './Aligner';
 import type { Alignment } from './Alignment';
 
 const Parchment = Quill.imports.parchment;
@@ -32,7 +32,7 @@ const DEFAULT_ICONS = {
     </svg>`,
 };
 
-export default class DefaultAlignmentHelper implements AlignmentHelper {
+export default class DefaultAligner implements Aligner {
   alignments: { [string]: Alignment };
   floatStyle: any;
   marginStyle: any;

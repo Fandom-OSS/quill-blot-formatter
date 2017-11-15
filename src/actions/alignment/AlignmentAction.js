@@ -2,18 +2,18 @@
 
 import Action from '../Action';
 import BlotResize from '../../BlotResize';
-import DefaultAlignmentHelper from './DefaultAlignmentHelper';
-import { AlignmentHelper } from './AlignmentHelper';
+import DefaultAligner from './DefaultAligner';
+import { Aligner } from './Aligner';
 import { Toolbar } from './Toolbar';
 import DefaultToolbar from './DefaultToolbar';
 
 export default class AlignmentAction extends Action {
   toolbar: Toolbar;
-  alignmentHelper: AlignmentHelper;
+  alignmentHelper: Aligner;
 
   constructor(resizer: BlotResize) {
     super(resizer);
-    this.alignmentHelper = new DefaultAlignmentHelper();
+    this.alignmentHelper = new DefaultAligner();
     this.toolbar = new DefaultToolbar();
   }
 
