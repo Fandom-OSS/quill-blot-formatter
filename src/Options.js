@@ -1,7 +1,7 @@
 // @flow
 
 import Action from './actions/Action';
-import AlignmentAction from './actions/AlignmentAction';
+import AlignmentAction from './actions/alignment/AlignmentAction';
 import DeleteAction from './actions/DeleteAction';
 import BlotSpec from './specs/BlotSpec';
 import ImageSpec from './specs/ImageSpec';

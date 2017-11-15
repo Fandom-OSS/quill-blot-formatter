@@ -1,8 +1,9 @@
 // @flow
 
-import Action from './Action';
-import BlotResize from '../BlotResize';
-import { AlignmentHelper, DefaultAlignmentHelper } from '../AlignmentHelper';
+import Action from '../Action';
+import BlotResize from '../../BlotResize';
+import DefaultAlignmentHelper from './DefaultAlignmentHelper';
+import { AlignmentHelper } from './AlignmentHelper';
 
 export default class AlignmentAction extends Action {
   toolbar: any;

@@ -4,25 +4,25 @@ import BlotSpec from './BlotSpec';
 import BlotResize from '../BlotResize';
 
 export default class ImageSpec extends BlotSpec {
-  el: ?HTMLElement;
+  img: ?HTMLElement;
 
   constructor(resizer: BlotResize) {
     super(resizer);
-    this.el = null;
+    this.img = null;
 
     this.resizer.quill.root.addEventListener('click', this.onClick);
   }
 
   getTargetElement(): ?HTMLElement {
-    return this.el;
+    return this.img;
   }
 
   getOverlayTarget(): ?HTMLElement {
-    return this.el;
+    return this.img;
   }
 
   onHide() {
-    this.el = null;
+    this.img = null;
   }
 
   onClick = (event: MouseEvent) => {
@@ -31,7 +31,7 @@ export default class ImageSpec extends BlotSpec {
       return;
     }
 
-    this.el = el;
+    this.img = el;
     this.resizer.show(this);
   };
 }

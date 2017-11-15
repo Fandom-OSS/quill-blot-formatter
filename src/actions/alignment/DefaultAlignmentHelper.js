@@ -1,6 +1,8 @@
 // @flow
 
 import Quill from 'quill';
+import AlignmentHelper from './AlignmentHelper';
+import type { Alignment } from './Alignment';
 
 const Parchment = Quill.imports.parchment;
 export const ALIGN_ATTRIBUTE = 'data-align';
@@ -10,19 +12,7 @@ export const DEFAULT_ALIGNMENTS = {
   right: 'right',
 };
 
-export type Alignment = {
-  icon: string;
-  apply: (el: HTMLElement) => void;
-  isApplied: (el: HTMLElement) => boolean;
-}
-
-export interface AlignmentHelper {
-  getAlignments(): Alignment[];
-  getCurrentAlignment(el: HTMLElement): ?Alignment;
-  clear(el: HTMLElement): void;
-}
-
-export class DefaultAlignmentHelper implements AlignmentHelper {
+export default class DefaultAlignmentHelper implements AlignmentHelper {
   alignments: { [string]: Alignment };
   floatStyle: any;
   marginStyle: any;
