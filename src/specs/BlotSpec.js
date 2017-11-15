@@ -16,7 +16,7 @@ export default class BlotSpec {
 
   // eslint-disable-next-line class-methods-use-this
   getOverlayTarget(): ?HTMLElement {
-    return null;
+    return this.getTargetElement();
   }
 
   // eslint-disable-next-line class-methods-use-this

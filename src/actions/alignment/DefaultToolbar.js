@@ -1,6 +1,6 @@
 // @flow
 
-import Toolbar from './Toolbar';
+import { Toolbar } from './Toolbar';
 import { Aligner } from './Aligner';
 import type { Alignment } from './Alignment';
 import BlotResize from '../../BlotResize';

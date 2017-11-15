@@ -17,10 +17,6 @@ export default class ImageSpec extends BlotSpec {
     return this.img;
   }
 
-  getOverlayTarget(): ?HTMLElement {
-    return this.img;
-  }
-
   onHide() {
     this.img = null;
   }
