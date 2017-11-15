@@ -1,7 +1,7 @@
 // @flow
 
-import Action from '../Action';
-import BlotResize from '../../BlotResize';
+import Action from './Action';
+import BlotResize from '../BlotResize';
 
 const handleStyle = {
   position: 'absolute',

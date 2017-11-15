@@ -29,6 +29,15 @@ const buttonStyle = {
   verticalAlign: 'middle',
 };
 
+const svgStyle = {
+  display: 'inline-block',
+  width: '24px',
+  height: '24px',
+  background: 'white',
+  border: '1px solid #999',
+  verticalAlign: 'middle',
+};
+
 export default class DefaultToolbar implements Toolbar {
   toolbar: ?HTMLElement;
   buttons: HTMLElement[];
@@ -70,7 +79,7 @@ export default class DefaultToolbar implements Toolbar {
     if (index > 0) {
       button.style.borderLeftWidth = '0'; // eslint-disable-line no-param-reassign
     }
-    Object.assign(button.children[0].style, buttonStyle);
+    Object.assign(button.children[0].style, svgStyle);
   }
 
   addButtons(resizer: BlotResize, toolbar: HTMLElement, alignmentHelper: Aligner) {
@@ -81,10 +90,31 @@ export default class DefaultToolbar implements Toolbar {
       button.addEventListener('click', () => {
         this.onButtonClick(button, resizer, alignment, alignmentHelper);
       });
+      this.preselectButton(button, alignment, resizer, alignmentHelper);
       this.addButtonStyle(button, i);
       this.buttons.push(button);
       toolbar.appendChild(button);
     });
+  }
+
+  preselectButton(
+    button: HTMLElement,
+    alignment: Alignment,
+    resizer: BlotResize,
+    alignmentHelper: Aligner,
+  ) {
+    if (!resizer.currentSpec) {
+      return;
+    }
+
+    const target = resizer.currentSpec.getTargetElement();
+    if (!target) {
+      return;
+    }
+
+    if (alignmentHelper.isAligned(target, alignment)) {
+      this.selectButton(button);
+    }
   }
 
   onButtonClick(

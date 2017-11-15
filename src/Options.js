@@ -2,7 +2,7 @@
 
 import Action from './actions/Action';
 import AlignAction from './actions/align/AlignAction';
-import ResizeAction from './actions/resize/ResizeAction';
+import ResizeAction from './actions/ResizeAction';
 import DeleteAction from './actions/DeleteAction';
 import BlotSpec from './specs/BlotSpec';
 import ImageSpec from './specs/ImageSpec';
