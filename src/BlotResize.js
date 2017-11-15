@@ -57,6 +57,11 @@ export default class BlotResize {
     this.destroyActions();
   }
 
+  update() {
+    this.repositionOverlay();
+    // TODO: update actions
+  }
+
   createActions() {
     this.actions = this.options.actions.map((ActionClass: Class<Action>) => {
       const action: Action = new ActionClass(this);

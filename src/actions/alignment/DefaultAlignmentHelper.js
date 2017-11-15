@@ -11,6 +11,26 @@ export const DEFAULT_ALIGNMENTS = {
   center: 'center',
   right: 'right',
 };
+const DEFAULT_ICONS = {
+  [DEFAULT_ALIGNMENTS.left]: `
+    <svg viewbox="0 0 18 18">
+      <line class="ql-stroke" x1="3" x2="15" y1="9" y2="9"></line>
+      <line class="ql-stroke" x1="3" x2="13" y1="14" y2="14"></line>
+      <line class="ql-stroke" x1="3" x2="9" y1="4" y2="4"></line>
+    </svg>`,
+  [DEFAULT_ALIGNMENTS.center]: `
+    <svg viewbox="0 0 18 18">
+       <line class="ql-stroke" x1="15" x2="3" y1="9" y2="9"></line>
+      <line class="ql-stroke" x1="14" x2="4" y1="14" y2="14"></line>
+      <line class="ql-stroke" x1="12" x2="6" y1="4" y2="4"></line>
+    </svg>`,
+  [DEFAULT_ALIGNMENTS.right]: `
+    <svg viewbox="0 0 18 18">
+      <line class="ql-stroke" x1="15" x2="3" y1="9" y2="9"></line>
+      <line class="ql-stroke" x1="15" x2="5" y1="14" y2="14"></line>
+      <line class="ql-stroke" x1="15" x2="9" y1="4" y2="4"></line>
+    </svg>`,
+};
 
 export default class DefaultAlignmentHelper implements AlignmentHelper {
   alignments: { [string]: Alignment };
@@ -19,16 +39,19 @@ export default class DefaultAlignmentHelper implements AlignmentHelper {
   displayStyle: any;
   alignAttribute: any;
   manageStyle: boolean;
+  allowDeselect: boolean;
 
-  constructor(setStyle: boolean = true) {
+  // TODO: it's weird that each alignment has isApplied. that should be part of AlignmentHelper
+  constructor(setStyle: boolean = true, allowDeselect: boolean = true) {
     this.manageStyle = setStyle;
+    this.allowDeselect = allowDeselect;
     this.floatStyle = new Parchment.Attributor.Style('float', 'float');
     this.marginStyle = new Parchment.Attributor.Style('margin', 'margin');
     this.displayStyle = new Parchment.Attributor.Style('display', 'display');
     this.alignAttribute = new Parchment.Attributor.Attribute(ALIGN_ATTRIBUTE, ALIGN_ATTRIBUTE);
     this.alignments = {
       [DEFAULT_ALIGNMENTS.left]: {
-        icon: '',
+        icon: DEFAULT_ICONS[DEFAULT_ALIGNMENTS.left],
         apply: (el: HTMLElement) => {
           this.setAlignment(el, DEFAULT_ALIGNMENTS.left);
           this.setStyle(el, 'inline', 'left', '0 1em 1em 0');
@@ -36,7 +59,7 @@ export default class DefaultAlignmentHelper implements AlignmentHelper {
         isApplied: (el: HTMLElement) => this.isAligned(el, DEFAULT_ALIGNMENTS.left),
       },
       [DEFAULT_ALIGNMENTS.center]: {
-        icon: '',
+        icon: DEFAULT_ICONS[DEFAULT_ALIGNMENTS.center],
         apply: (el: HTMLElement) => {
           this.setAlignment(el, DEFAULT_ALIGNMENTS.center);
           this.setStyle(el, 'block', null, 'auto');
@@ -44,7 +67,7 @@ export default class DefaultAlignmentHelper implements AlignmentHelper {
         isApplied: (el: HTMLElement) => this.isAligned(el, DEFAULT_ALIGNMENTS.center),
       },
       [DEFAULT_ALIGNMENTS.right]: {
-        icon: '',
+        icon: DEFAULT_ICONS[DEFAULT_ALIGNMENTS.right],
         apply: (el: HTMLElement) => {
           this.setAlignment(el, DEFAULT_ALIGNMENTS.right);
           this.setStyle(el, 'inline', 'right', '0 0 1em 1em');
