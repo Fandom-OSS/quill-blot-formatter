@@ -59,7 +59,7 @@ export default class BlotResize {
 
   update() {
     this.repositionOverlay();
-    // TODO: update actions
+    this.actions.forEach(action => action.onUpdate());
   }
 
   createActions() {

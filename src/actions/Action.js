@@ -12,4 +12,6 @@ export default class Action {
   onCreate() {} // eslint-disable-line class-methods-use-this
 
   onDestroy() {} // eslint-disable-line class-methods-use-this
+
+  onUpdate() {} // eslint-disable-line class-methods-use-this
 }
