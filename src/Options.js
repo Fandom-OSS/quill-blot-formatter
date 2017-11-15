@@ -1,8 +1,8 @@
 // @flow
 
 import Action from './actions/Action';
-import Alignment from './actions/Alignment';
-import Delete from './actions/Delete';
+import AlignmentAction from './actions/AlignmentAction';
+import DeleteAction from './actions/DeleteAction';
 import { BlotSpec } from './specs/BlotSpec';
 import ImageSpec from './specs/ImageSpec';
 
@@ -18,8 +18,8 @@ export type BlotResizeOptions = {
 
 const DefaultOptions:BlotResizeOptions = {
   actions: [
-    Alignment,
-    Delete,
+    AlignmentAction,
+    DeleteAction,
   ],
   specs: [
     ImageSpec,

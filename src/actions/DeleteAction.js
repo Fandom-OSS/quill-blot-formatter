@@ -3,7 +3,7 @@
 import Quill from 'quill';
 import Action from './Action';
 
-export default class Delete extends Action {
+export default class DeleteAction extends Action {
   onCreate() {
     document.addEventListener('keyup', this.onKeyUp, true);
     this.resizer.quill.root.addEventListener('input', this.onKeyUp, true);
