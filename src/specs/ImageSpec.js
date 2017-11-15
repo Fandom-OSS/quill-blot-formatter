@@ -31,9 +31,6 @@ export default class ImageSpec extends BlotSpec {
       return;
     }
 
-    event.preventDefault();
-    event.stopPropagation();
-
     this.el = el;
     this.resizer.show(this);
   };
