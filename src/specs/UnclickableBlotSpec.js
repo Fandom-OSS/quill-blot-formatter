@@ -72,10 +72,6 @@ export default class UnclickableBlotSpec extends BlotSpec {
     });
   }
 
-  addMouseEnterListener(element: HTMLElement) {
-    element.addEventListener('mouseenter', this.onMouseEnter);
-  }
-
   repositionProxyImage(unclickable: HTMLElement) {
     const rect = unclickable.getBoundingClientRect();
 
@@ -95,7 +91,7 @@ export default class UnclickableBlotSpec extends BlotSpec {
     Array.from(document.querySelectorAll(`${this.selector}:not([${MOUSE_ENTER_ATTRIBUTE}])`))
       .forEach((unclickable) => {
         unclickable.setAttribute(MOUSE_ENTER_ATTRIBUTE, 'true');
-        this.addMouseEnterListener(unclickable);
+        unclickable.addEventListener('mouseenter', this.onMouseEnter);
       });
   };
 
