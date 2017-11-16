@@ -38,10 +38,10 @@ export default class DefaultAligner implements Aligner {
   marginStyle: any;
   displayStyle: any;
   alignAttribute: any;
-  manageStyle: boolean;
+  applyStyle: boolean;
 
-  constructor(setStyle: boolean = true) {
-    this.manageStyle = setStyle;
+  constructor(applyStyle: boolean) {
+    this.applyStyle = applyStyle;
     this.floatStyle = new Parchment.Attributor.Style('float', 'float');
     this.marginStyle = new Parchment.Attributor.Style('margin', 'margin');
     this.displayStyle = new Parchment.Attributor.Style('display', 'display');
@@ -97,7 +97,7 @@ export default class DefaultAligner implements Aligner {
   clear(el: HTMLElement): void {
     this.alignAttribute.remove(el);
 
-    if (this.manageStyle) {
+    if (this.applyStyle) {
       this.floatStyle.remove(el);
       this.displayStyle.remove(el);
       this.marginStyle.remove(el);
@@ -109,7 +109,7 @@ export default class DefaultAligner implements Aligner {
   }
 
   setStyle(el: HTMLElement, display: string, float: ?string, margin: string) {
-    if (this.manageStyle) {
+    if (this.applyStyle) {
       this.displayStyle.add(el, display);
       this.marginStyle.add(el, margin);
 

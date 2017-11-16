@@ -13,7 +13,7 @@ export default class AlignAction extends Action {
 
   constructor(resizer: BlotResize) {
     super(resizer);
-    this.alignmentHelper = new DefaultAligner();
+    this.alignmentHelper = new DefaultAligner(resizer.options.align.aligner.applyStyle);
     this.toolbar = new DefaultToolbar();
   }
 

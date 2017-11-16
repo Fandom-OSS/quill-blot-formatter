@@ -13,11 +13,16 @@ export type BlotResizeOptions = {
   overlay: {
     styles: ?{},
   },
-  toolbar: {
-    allowDeselect: boolean,
-    mainStyle: ?{},
-    buttonStyle: ?{},
-    svgStyle: ?{},
+  align: {
+    aligner: {
+      applyStyle: boolean,
+    },
+    toolbar: {
+      allowDeselect: boolean,
+      mainStyle: ?{},
+      buttonStyle: ?{},
+      svgStyle: ?{},
+    },
   },
   resize: {
     handleStyle: ?{},
@@ -40,37 +45,42 @@ const DefaultOptions:BlotResizeOptions = {
       border: '1px dashed #444',
     },
   },
-  toolbar: {
-    allowDeselect: true,
-    mainStyle: {
-      position: 'absolute',
-      top: '-12px',
-      right: '0',
-      left: '0',
-      height: '0',
-      minWidth: '100px',
-      font: '12px/1.0 Arial, Helvetica, sans-serif',
-      textAlign: 'center',
-      color: '#333',
-      boxSizing: 'border-box',
-      cursor: 'default',
-      zIndex: '1',
+  align: {
+    aligner: {
+      applyStyle: true,
     },
-    buttonStyle: {
-      display: 'inline-block',
-      width: '24px',
-      height: '24px',
-      background: 'white',
-      border: '1px solid #999',
-      verticalAlign: 'middle',
-    },
-    svgStyle: {
-      display: 'inline-block',
-      width: '24px',
-      height: '24px',
-      background: 'white',
-      border: '1px solid #999',
-      verticalAlign: 'middle',
+    toolbar: {
+      allowDeselect: true,
+      mainStyle: {
+        position: 'absolute',
+        top: '-12px',
+        right: '0',
+        left: '0',
+        height: '0',
+        minWidth: '100px',
+        font: '12px/1.0 Arial, Helvetica, sans-serif',
+        textAlign: 'center',
+        color: '#333',
+        boxSizing: 'border-box',
+        cursor: 'default',
+        zIndex: '1',
+      },
+      buttonStyle: {
+        display: 'inline-block',
+        width: '24px',
+        height: '24px',
+        background: 'white',
+        border: '1px solid #999',
+        verticalAlign: 'middle',
+      },
+      svgStyle: {
+        display: 'inline-block',
+        width: '24px',
+        height: '24px',
+        background: 'white',
+        border: '1px solid #999',
+        verticalAlign: 'middle',
+      },
     },
   },
   resize: {

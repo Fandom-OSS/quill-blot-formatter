@@ -35,22 +35,22 @@ export default class DefaultToolbar implements Toolbar {
 
   // eslint-disable-next-line class-methods-use-this
   addToolbarStyle(resizer: BlotResize, toolbar: HTMLElement) {
-    if (resizer.options.toolbar.mainStyle) {
-      Object.assign(toolbar.style, resizer.options.toolbar.mainStyle);
+    if (resizer.options.align.toolbar.mainStyle) {
+      Object.assign(toolbar.style, resizer.options.align.toolbar.mainStyle);
     }
   }
 
   // eslint-disable-next-line class-methods-use-this
   addButtonStyle(button: HTMLElement, index: number, resizer: BlotResize) {
-    if (resizer.options.toolbar.buttonStyle) {
-      Object.assign(button.style, resizer.options.toolbar.buttonStyle);
+    if (resizer.options.align.toolbar.buttonStyle) {
+      Object.assign(button.style, resizer.options.align.toolbar.buttonStyle);
       if (index > 0) {
         button.style.borderLeftWidth = '0'; // eslint-disable-line no-param-reassign
       }
     }
 
-    if (resizer.options.toolbar.svgStyle) {
-      Object.assign(button.children[0].style, resizer.options.toolbar.svgStyle);
+    if (resizer.options.align.toolbar.svgStyle) {
+      Object.assign(button.children[0].style, resizer.options.align.toolbar.svgStyle);
     }
   }
 
@@ -116,7 +116,7 @@ export default class DefaultToolbar implements Toolbar {
   ) {
     this.buttons.forEach(this.deselectButton);
     if (aligner.isAligned(resizeTarget, alignment)) {
-      if (resizer.options.toolbar.allowDeselect) {
+      if (resizer.options.align.toolbar.allowDeselect) {
         aligner.clear(resizeTarget);
       } else {
         this.selectButton(button);
