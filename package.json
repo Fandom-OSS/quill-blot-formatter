@@ -6,7 +6,9 @@
   "author": "nmonterroso <nmonterroso@users.noreply.github.com>",
   "license": "MIT",
   "dependencies": {
-    "deepmerge": "^2.0.0",
+    "deepmerge": "^2.0.0"
+  },
+  "peerDependencies": {
     "quill": "^1.3.4"
   },
   "devDependencies": {
