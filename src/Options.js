@@ -12,7 +12,7 @@ export type BlotResizeOptions = {
   actions: Class<Action>[],
   specs: Class<BlotSpec>[],
   overlay: {
-    styles: ?{},
+    style: ?{},
   },
   align: {
     attribute: string,
@@ -42,7 +42,7 @@ const DefaultOptions:BlotResizeOptions = {
     IframeVideoSpec,
   ],
   overlay: {
-    styles: {
+    style: {
       position: 'absolute',
       boxSizing: 'border-box',
       border: '1px dashed #444',

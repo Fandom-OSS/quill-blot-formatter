@@ -23,8 +23,8 @@ export default class BlotResize {
     this.actions = [];
     this.overlay = document.createElement('div');
     this.overlay.classList.add('blot-resize__overlay');
-    if (this.options.overlay.styles) {
-      Object.assign(this.overlay.style, this.options.overlay.styles);
+    if (this.options.overlay.style) {
+      Object.assign(this.overlay.style, this.options.overlay.style);
     }
 
     // disable native image resizing on firefox
