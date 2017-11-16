@@ -23,15 +23,17 @@
     "eslint-plugin-import": "^2.7.0",
     "flow-bin": "^0.57.3",
     "npm-run-all": "^4.1.2",
+    "rimraf": "^2.6.2",
     "webpack": "^3.8.1"
   },
   "scripts": {
-    "start": "npm-run-all --race --parallel dev:babel dev:webpack",
-    "dev:babel": "babel --watch src/ --out-dir dist/src",
+    "clean": "rimraf build",
+    "start": "yarn clean && npm-run-all --race --parallel dev:babel dev:webpack",
+    "dev:babel": "babel --watch src/ --out-dir build",
     "dev:webpack": "yarn dev:delay && webpack --progress --colors --watch",
     "dev:delay": "node -e \"setTimeout(() => {}, 3000)\"",
-    "build": "yarn build:babel && yarn build:webpack",
-    "build:babel": "babel src/ --out-dir dist/src",
+    "build": "yarn clean && yarn build:babel && yarn build:webpack",
+    "build:babel": "babel src/ --out-dir build",
     "build:webpack": "webpack -p --progress --colors"
   }
 }
