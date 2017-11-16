@@ -22,8 +22,8 @@ export default class BlotResize {
     this.currentSpec = null;
     this.actions = [];
     this.overlay = document.createElement('div');
-    this.overlay.classList.add(this.options.overlay.className);
-    if (this.options.overlay.styled) {
+    this.overlay.classList.add('blot-resize__overlay');
+    if (this.options.overlay.styles) {
       Object.assign(this.overlay.style, this.options.overlay.styles);
     }
 

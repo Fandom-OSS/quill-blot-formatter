@@ -5,46 +5,11 @@ import { Aligner } from './Aligner';
 import type { Alignment } from './Alignment';
 import BlotResize from '../../BlotResize';
 
-const toolbarStyle = {
-  position: 'absolute',
-  top: '-12px',
-  right: '0',
-  left: '0',
-  height: '0',
-  minWidth: '100px',
-  font: '12px/1.0 Arial, Helvetica, sans-serif',
-  textAlign: 'center',
-  color: '#333',
-  boxSizing: 'border-box',
-  cursor: 'default',
-  zIndex: '1',
-};
-
-const buttonStyle = {
-  display: 'inline-block',
-  width: '24px',
-  height: '24px',
-  background: 'white',
-  border: '1px solid #999',
-  verticalAlign: 'middle',
-};
-
-const svgStyle = {
-  display: 'inline-block',
-  width: '24px',
-  height: '24px',
-  background: 'white',
-  border: '1px solid #999',
-  verticalAlign: 'middle',
-};
-
 export default class DefaultToolbar implements Toolbar {
   toolbar: ?HTMLElement;
   buttons: HTMLElement[];
-  allowDeselect: boolean;
 
-  constructor(allowDeselect: boolean = true) {
-    this.allowDeselect = allowDeselect;
+  constructor() {
     this.toolbar = null;
     this.buttons = [];
   }
@@ -52,7 +17,7 @@ export default class DefaultToolbar implements Toolbar {
   create(resizer: BlotResize, aligner: Aligner): HTMLElement {
     const toolbar = document.createElement('div');
     toolbar.classList.add('blot-resize__toolbar');
-    this.addToolbarStyle(toolbar);
+    this.addToolbarStyle(resizer, toolbar);
     this.addButtons(resizer, toolbar, aligner);
 
     this.toolbar = toolbar;
@@ -69,17 +34,24 @@ export default class DefaultToolbar implements Toolbar {
   }
 
   // eslint-disable-next-line class-methods-use-this
-  addToolbarStyle(toolbar: HTMLElement) {
-    Object.assign(toolbar.style, toolbarStyle);
+  addToolbarStyle(resizer: BlotResize, toolbar: HTMLElement) {
+    if (resizer.options.toolbar.mainStyle) {
+      Object.assign(toolbar.style, resizer.options.toolbar.mainStyle);
+    }
   }
 
   // eslint-disable-next-line class-methods-use-this
-  addButtonStyle(button: HTMLElement, index: number) {
-    Object.assign(button.style, buttonStyle);
-    if (index > 0) {
-      button.style.borderLeftWidth = '0'; // eslint-disable-line no-param-reassign
+  addButtonStyle(button: HTMLElement, index: number, resizer: BlotResize) {
+    if (resizer.options.toolbar.buttonStyle) {
+      Object.assign(button.style, resizer.options.toolbar.buttonStyle);
+      if (index > 0) {
+        button.style.borderLeftWidth = '0'; // eslint-disable-line no-param-reassign
+      }
     }
-    Object.assign(button.children[0].style, svgStyle);
+
+    if (resizer.options.toolbar.svgStyle) {
+      Object.assign(button.children[0].style, resizer.options.toolbar.svgStyle);
+    }
   }
 
   addButtons(resizer: BlotResize, toolbar: HTMLElement, aligner: Aligner) {
@@ -91,7 +63,7 @@ export default class DefaultToolbar implements Toolbar {
         this.onButtonClick(button, resizer, alignment, aligner);
       });
       this.preselectButton(button, alignment, resizer, aligner);
-      this.addButtonStyle(button, i);
+      this.addButtonStyle(button, i, resizer);
       this.buttons.push(button);
       toolbar.appendChild(button);
     });
@@ -144,7 +116,7 @@ export default class DefaultToolbar implements Toolbar {
   ) {
     this.buttons.forEach(this.deselectButton);
     if (aligner.isAligned(resizeTarget, alignment)) {
-      if (this.allowDeselect) {
+      if (resizer.options.toolbar.allowDeselect) {
         aligner.clear(resizeTarget);
       } else {
         this.selectButton(button);

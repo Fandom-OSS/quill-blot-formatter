@@ -3,16 +3,6 @@
 import Action from './Action';
 import BlotResize from '../BlotResize';
 
-const handleStyle = {
-  position: 'absolute',
-  height: '12px',
-  width: '12px',
-  backgroundColor: 'white',
-  border: '1px solid #777',
-  boxSizing: 'border-box',
-  opacity: '0.80',
-};
-
 export default class ResizeAction extends Action {
   topLeftHandle: HTMLElement;
   topRightHandle: HTMLElement;
@@ -24,10 +14,10 @@ export default class ResizeAction extends Action {
 
   constructor(resizer: BlotResize) {
     super(resizer);
-    this.topLeftHandle = this.createHandle('top-left', 'nwse-resize');
-    this.topRightHandle = this.createHandle('top-right', 'nesw-resize');
-    this.bottomRightHandle = this.createHandle('bottom-right', 'nwse-resize');
-    this.bottomLeftHandle = this.createHandle('bottom-left', 'nesw-resize');
+    this.topLeftHandle = this.createHandle('top-left', 'nwse-resize', resizer.options.resize.handleStyle);
+    this.topRightHandle = this.createHandle('top-right', 'nesw-resize', resizer.options.resize.handleStyle);
+    this.bottomRightHandle = this.createHandle('bottom-right', 'nwse-resize', resizer.options.resize.handleStyle);
+    this.bottomLeftHandle = this.createHandle('bottom-left', 'nesw-resize', resizer.options.resize.handleStyle);
     this.dragHandle = null;
     this.dragStartX = 0;
     this.preDragWidth = 0;
@@ -39,7 +29,7 @@ export default class ResizeAction extends Action {
     this.resizer.overlay.appendChild(this.bottomRightHandle);
     this.resizer.overlay.appendChild(this.bottomLeftHandle);
 
-    this.repositionHandles();
+    this.repositionHandles(this.resizer.options.resize.handleStyle);
   }
 
   onDestroy() {
@@ -50,21 +40,31 @@ export default class ResizeAction extends Action {
     this.resizer.overlay.removeChild(this.bottomLeftHandle);
   }
 
-  createHandle(position: string, cursor: string): HTMLElement {
+  createHandle(position: string, cursor: string, handleStyle: ?{}): HTMLElement {
     const box = document.createElement('div');
     box.classList.add(`blot-resize__resize-${position}`);
     box.style.cursor = cursor;
 
-    Object.assign(box.style, handleStyle);
+    if (handleStyle) {
+      Object.assign(box.style, handleStyle);
+    }
 
     box.addEventListener('mousedown', this.onMouseDown);
 
     return box;
   }
 
-  repositionHandles() {
-    const handleXOffset = `${-parseFloat(handleStyle.width) / 2}px`;
-    const handleYOffset = `${-parseFloat(handleStyle.height) / 2}px`;
+  repositionHandles(handleStyle: ?{}) {
+    let handleXOffset = '0px';
+    let handleYOffset = '0px';
+    if (handleStyle) {
+      if (handleStyle.width) {
+        handleXOffset = `${-parseFloat(handleStyle.width) / 2}px`;
+      }
+      if (handleStyle.height) {
+        handleYOffset = `${-parseFloat(handleStyle.height) / 2}px`;
+      }
+    }
 
     Object.assign(this.topLeftHandle.style, { left: handleXOffset, top: handleYOffset });
     Object.assign(this.topRightHandle.style, { right: handleXOffset, top: handleYOffset });
