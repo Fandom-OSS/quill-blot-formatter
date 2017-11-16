@@ -11,6 +11,7 @@ export default class ResizeAction extends Action {
   dragHandle: ?HTMLElement;
   dragStartX: number;
   preDragWidth: number;
+  targetRatio: number;
 
   constructor(resizer: BlotResize) {
     super(resizer);
@@ -21,6 +22,7 @@ export default class ResizeAction extends Action {
     this.dragHandle = null;
     this.dragStartX = 0;
     this.preDragWidth = 0;
+    this.targetRatio = 0;
   }
 
   onCreate() {
@@ -101,8 +103,11 @@ export default class ResizeAction extends Action {
       return;
     }
 
+    const rect = target.getBoundingClientRect();
+
     this.dragStartX = event.clientX;
-    this.preDragWidth = target.getBoundingClientRect().width;
+    this.preDragWidth = rect.width;
+    this.targetRatio = rect.height / rect.width;
 
     document.addEventListener('mousemove', this.onDrag);
     document.addEventListener('mouseup', this.onMouseUp);
@@ -119,14 +124,23 @@ export default class ResizeAction extends Action {
     }
 
     const deltaX = event.clientX - this.dragStartX;
-    let newWidth: number = 0;
+    let newWidth = 0;
+
     if (this.dragHandle === this.topLeftHandle || this.dragHandle === this.bottomLeftHandle) {
       newWidth = Math.round(this.preDragWidth - deltaX);
     } else {
       newWidth = Math.round(this.preDragWidth + deltaX);
     }
 
-    target.style.width = `${newWidth}px`;
+    const newHeight = this.targetRatio * newWidth;
+
+    if (target.hasAttribute('width')) {
+      target.setAttribute('width', `${newWidth}`);
+      target.setAttribute('height', `${newHeight}`);
+    } else {
+      target.style.width = `${newWidth}px`;
+      target.style.height = `${newHeight}px`;
+    }
 
     this.resizer.update();
   };
