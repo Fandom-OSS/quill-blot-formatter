@@ -9,7 +9,9 @@ export default class ImageSpec extends BlotSpec {
   constructor(resizer: BlotResize) {
     super(resizer);
     this.img = null;
+  }
 
+  init() {
     this.resizer.quill.root.addEventListener('click', this.onClick);
   }
 

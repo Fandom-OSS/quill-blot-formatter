@@ -6,6 +6,7 @@ import ResizeAction from './actions/ResizeAction';
 import DeleteAction from './actions/DeleteAction';
 import BlotSpec from './specs/BlotSpec';
 import ImageSpec from './specs/ImageSpec';
+import IframeVideoSpec from './specs/IframeVideoSpec';
 
 export type BlotResizeOptions = {
   actions: Class<Action>[],
@@ -14,6 +15,7 @@ export type BlotResizeOptions = {
     styles: ?{},
   },
   align: {
+    attribute: string,
     aligner: {
       applyStyle: boolean,
     },
@@ -37,6 +39,7 @@ const DefaultOptions:BlotResizeOptions = {
   ],
   specs: [
     ImageSpec,
+    IframeVideoSpec,
   ],
   overlay: {
     styles: {
@@ -46,6 +49,7 @@ const DefaultOptions:BlotResizeOptions = {
     },
   },
   align: {
+    attribute: 'data-align',
     aligner: {
       applyStyle: true,
     },

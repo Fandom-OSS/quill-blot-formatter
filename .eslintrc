@@ -10,6 +10,12 @@
     "browser": true
   },
   "rules": {
-    "no-mixed-operators": 0
+    "no-console": 0,
+    "no-mixed-operators": 0,
+    "no-restricted-syntax": [
+      "error",
+      "ForInStatement"
+    ],
+    "prefer-destructuring": 0
   }
 }

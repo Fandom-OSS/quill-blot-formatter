@@ -5,7 +5,6 @@ import { Aligner } from './Aligner';
 import type { Alignment } from './Alignment';
 
 const Parchment = Quill.imports.parchment;
-export const ALIGN_ATTRIBUTE = 'data-align';
 export const DEFAULT_ALIGNMENTS = {
   left: 'left',
   center: 'center',
@@ -40,12 +39,12 @@ export default class DefaultAligner implements Aligner {
   alignAttribute: any;
   applyStyle: boolean;
 
-  constructor(applyStyle: boolean) {
+  constructor(applyStyle: boolean, alignAttribute: string) {
     this.applyStyle = applyStyle;
     this.floatStyle = new Parchment.Attributor.Style('float', 'float');
     this.marginStyle = new Parchment.Attributor.Style('margin', 'margin');
     this.displayStyle = new Parchment.Attributor.Style('display', 'display');
-    this.alignAttribute = new Parchment.Attributor.Attribute(ALIGN_ATTRIBUTE, ALIGN_ATTRIBUTE);
+    this.alignAttribute = new Parchment.Attributor.Attribute(alignAttribute, alignAttribute);
     this.alignments = {
       [DEFAULT_ALIGNMENTS.left]: {
         name: DEFAULT_ALIGNMENTS.left,
@@ -95,8 +94,15 @@ export default class DefaultAligner implements Aligner {
   }
 
   clear(el: HTMLElement): void {
-    this.alignAttribute.remove(el);
+    this.clearData(el);
+    this.clearStyles(el);
+  }
 
+  clearData(el: HTMLElement): void {
+    this.alignAttribute.remove(el);
+  }
+
+  clearStyles(el: HTMLElement): void {
     if (this.applyStyle) {
       this.floatStyle.remove(el);
       this.displayStyle.remove(el);

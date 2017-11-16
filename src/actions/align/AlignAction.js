@@ -9,16 +9,19 @@ import DefaultToolbar from './DefaultToolbar';
 
 export default class AlignAction extends Action {
   toolbar: Toolbar;
-  alignmentHelper: Aligner;
+  aligner: Aligner;
 
   constructor(resizer: BlotResize) {
     super(resizer);
-    this.alignmentHelper = new DefaultAligner(resizer.options.align.aligner.applyStyle);
+    this.aligner = new DefaultAligner(
+      resizer.options.align.aligner.applyStyle,
+      resizer.options.align.attribute,
+    );
     this.toolbar = new DefaultToolbar();
   }
 
   onCreate() {
-    const toolbar = this.toolbar.create(this.resizer, this.alignmentHelper);
+    const toolbar = this.toolbar.create(this.resizer, this.aligner);
     this.resizer.overlay.appendChild(toolbar);
   }
 

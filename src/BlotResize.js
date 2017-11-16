@@ -33,6 +33,7 @@ export default class BlotResize {
 
     this.quill.root.addEventListener('click', this.onClick);
     this.specs = this.options.specs.map((SpecClass: Class<BlotSpec>) => new SpecClass(this));
+    this.specs.forEach(spec => spec.init());
   }
 
   show(spec: BlotSpec) {
