@@ -109,5 +109,6 @@ export default class UnclickableBlotSpec extends BlotSpec {
     this.unclickable = this.nextUnclickable;
     this.nextUnclickable = null;
     this.resizer.show(this);
+    this.hideProxyImage();
   };
 }
