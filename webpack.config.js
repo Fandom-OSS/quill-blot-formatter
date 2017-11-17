@@ -1,8 +1,8 @@
 module.exports = {
-  entry: './build/index.js',
+  entry: './dist/index.js',
   output: {
     filename: 'quill-blot-resize.min.js',
-    path: `${__dirname}/build`,
+    path: `${__dirname}/dist`,
     libraryTarget: 'umd',
     library: 'QuillBlotResize',
   },
