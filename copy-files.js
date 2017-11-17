@@ -45,7 +45,7 @@ function readPackageJson() {
 function updatePackageJson(json) {
   delete json.devDependencies;
   json.scripts = {
-    publish: `np --any-branch ${json.version}`,
+    prepublishOnly: 'yarn install',
   };
 
   return Promise.resolve(json);
