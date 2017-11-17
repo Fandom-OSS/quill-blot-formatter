@@ -1,6 +1,6 @@
 {
   "name": "quill-blot-resize",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "a module for the Quill text editor to allow blots to be resized and realigned",
   "main": "dist/index.js",
   "contributors": [
