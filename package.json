@@ -36,14 +36,15 @@
     "webpack": "^3.8.1"
   },
   "scripts": {
-    "build": "yarn clean && yarn build:babel && yarn build:webpack && yarn build:copy-files",
+    "build": "yarn clean && yarn build:babel && yarn build:webpack && yarn build:copy-flow-source",
     "build:babel": "babel src/ --out-dir dist",
-    "build:copy-files": "flow-copy-source --verbose src dist",
+    "build:copy-flow-source": "flow-copy-source --verbose src dist",
     "build:webpack": "webpack -p --progress --colors",
     "clean": "rimraf dist",
     "dev:babel": "babel --watch src/ --out-dir dist",
     "dev:webpack": "yarn dev:delay && webpack --progress --colors --watch",
     "dev:delay": "node -e \"setTimeout(() => {}, 3000)\"",
+    "prepublishOnly": "yarn build",
     "release": "np",
     "start": "yarn clean && npm-run-all --race --parallel dev:babel dev:webpack"
   }
