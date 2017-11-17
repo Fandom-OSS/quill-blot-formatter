@@ -19,7 +19,7 @@ export type ResizeOptions = {
 export type AlignOptions = {
   attribute: string,
   aligner: {
-    applyStyle: boolean,
+    applyStyle: boolean, // whether or not the aligner should handle the actual alignment properties
   },
   icons: {
     left: string,
@@ -42,7 +42,7 @@ export type Options = {
   resize: ResizeOptions,
 };
 
-const DefaultOptions:Options = {
+const DefaultOptions: Options = {
   actions: [
     AlignAction,
     ResizeAction,
