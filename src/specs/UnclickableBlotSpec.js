@@ -1,10 +1,10 @@
 // @flow
 
 import BlotSpec from './BlotSpec';
-import BlotResize from '../BlotResize';
+import BlotFormatter from '../BlotFormatter';
 
-const MOUSE_ENTER_ATTRIBUTE = 'data-blot-resize-unclickable-bound';
-const PROXY_IMAGE_CLASS = 'blot-resize__proxy-image';
+const MOUSE_ENTER_ATTRIBUTE = 'data-blot-formatter-unclickable-bound';
+const PROXY_IMAGE_CLASS = 'blot-formatter__proxy-image';
 
 export default class UnclickableBlotSpec extends BlotSpec {
   selector: string;
@@ -12,8 +12,8 @@ export default class UnclickableBlotSpec extends BlotSpec {
   nextUnclickable: ?HTMLElement;
   proxyImage: HTMLImageElement;
 
-  constructor(resizer: BlotResize, selector: string) {
-    super(resizer);
+  constructor(formatter: BlotFormatter, selector: string) {
+    super(formatter);
     this.selector = selector;
     this.unclickable = null;
     this.nextUnclickable = null;
@@ -30,7 +30,7 @@ export default class UnclickableBlotSpec extends BlotSpec {
 
     this.hideProxyImage();
     this.proxyImage.addEventListener('click', this.onProxyImageClick);
-    this.resizer.quill.on('text-change', this.onTextChange);
+    this.formatter.quill.on('text-change', this.onTextChange);
   }
 
   getTargetElement(): ?HTMLElement {
@@ -108,7 +108,7 @@ export default class UnclickableBlotSpec extends BlotSpec {
   onProxyImageClick = () => {
     this.unclickable = this.nextUnclickable;
     this.nextUnclickable = null;
-    this.resizer.show(this);
+    this.formatter.show(this);
     this.hideProxyImage();
   };
 }

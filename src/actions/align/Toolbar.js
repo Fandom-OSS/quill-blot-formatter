@@ -1,10 +1,10 @@
 // @flow
 
 import { Aligner } from './Aligner';
-import BlotResize from '../../BlotResize';
+import BlotFormatter from '../../BlotFormatter';
 
 export interface Toolbar {
-  create(resizer: BlotResize, alignmentHelper: Aligner): HTMLElement;
+  create(formatter: BlotFormatter, alignmentHelper: Aligner): HTMLElement;
   destroy(): void;
   getElement(): ?HTMLElement;
 }

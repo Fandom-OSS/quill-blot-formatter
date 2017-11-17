@@ -1,10 +1,10 @@
 // @flow
 
 import UnclickableBlotSpec from './UnclickableBlotSpec';
-import BlotResize from '../BlotResize';
+import BlotFormatter from '../BlotFormatter';
 
 export default class IframeVideoSpec extends UnclickableBlotSpec {
-  constructor(resizer: BlotResize) {
-    super(resizer, 'iframe.ql-video');
+  constructor(formatter: BlotFormatter) {
+    super(formatter, 'iframe.ql-video');
   }
 }

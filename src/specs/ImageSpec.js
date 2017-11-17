@@ -1,18 +1,18 @@
 // @flow
 
 import BlotSpec from './BlotSpec';
-import BlotResize from '../BlotResize';
+import BlotFormatter from '../BlotFormatter';
 
 export default class ImageSpec extends BlotSpec {
   img: ?HTMLElement;
 
-  constructor(resizer: BlotResize) {
-    super(resizer);
+  constructor(formatter: BlotFormatter) {
+    super(formatter);
     this.img = null;
   }
 
   init() {
-    this.resizer.quill.root.addEventListener('click', this.onClick);
+    this.formatter.quill.root.addEventListener('click', this.onClick);
   }
 
   getTargetElement(): ?HTMLElement {
@@ -30,6 +30,6 @@ export default class ImageSpec extends BlotSpec {
     }
 
     this.img = el;
-    this.resizer.show(this);
+    this.formatter.show(this);
   };
 }

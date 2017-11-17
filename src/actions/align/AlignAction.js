@@ -1,7 +1,7 @@
 // @flow
 
 import Action from '../Action';
-import BlotResize from '../../BlotResize';
+import BlotFormatter from '../../BlotFormatter';
 import DefaultAligner from './DefaultAligner';
 import { Aligner } from './Aligner';
 import { Toolbar } from './Toolbar';
@@ -11,18 +11,18 @@ export default class AlignAction extends Action {
   toolbar: Toolbar;
   aligner: Aligner;
 
-  constructor(resizer: BlotResize) {
-    super(resizer);
+  constructor(formatter: BlotFormatter) {
+    super(formatter);
     this.aligner = new DefaultAligner(
-      resizer.options.align.aligner.applyStyle,
-      resizer.options.align.attribute,
+      formatter.options.align.aligner.applyStyle,
+      formatter.options.align.attribute,
     );
     this.toolbar = new DefaultToolbar();
   }
 
   onCreate() {
-    const toolbar = this.toolbar.create(this.resizer, this.aligner);
-    this.resizer.overlay.appendChild(toolbar);
+    const toolbar = this.toolbar.create(this.formatter, this.aligner);
+    this.formatter.overlay.appendChild(toolbar);
   }
 
   onDestroy() {
@@ -31,7 +31,7 @@ export default class AlignAction extends Action {
       return;
     }
 
-    this.resizer.overlay.removeChild(toolbar);
+    this.formatter.overlay.removeChild(toolbar);
     this.toolbar.destroy();
   }
 }

@@ -1,6 +1,6 @@
 // core
 export { default as DefaultOptions } from './Options';
-export { default as BlotResize } from './BlotResize';
+export { default } from './BlotFormatter';
 
 // actions
 export { default as Action } from './actions/Action';

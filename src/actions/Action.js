@@ -1,12 +1,12 @@
 // @flow
 
-import BlotResize from '../BlotResize';
+import BlotFormatter from '../BlotFormatter';
 
 export default class Action {
-  resizer: BlotResize;
+  formatter: BlotFormatter;
 
-  constructor(resizer: BlotResize) {
-    this.resizer = resizer;
+  constructor(formatter: BlotFormatter) {
+    this.formatter = formatter;
   }
 
   onCreate() {} // eslint-disable-line class-methods-use-this

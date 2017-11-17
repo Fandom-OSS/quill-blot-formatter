@@ -8,7 +8,7 @@ import BlotSpec from './specs/BlotSpec';
 import ImageSpec from './specs/ImageSpec';
 import IframeVideoSpec from './specs/IframeVideoSpec';
 
-export type BlotResizeOptions = {
+export type Options = {
   actions: Class<Action>[],
   specs: Class<BlotSpec>[],
   overlay: {
@@ -31,7 +31,7 @@ export type BlotResizeOptions = {
   },
 };
 
-const DefaultOptions:BlotResizeOptions = {
+const DefaultOptions:Options = {
   actions: [
     AlignAction,
     ResizeAction,

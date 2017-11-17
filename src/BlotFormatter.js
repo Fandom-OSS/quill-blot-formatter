@@ -1,28 +1,28 @@
 // @flow
 
 import deepmerge from 'deepmerge';
-import type { BlotResizeOptions } from './Options';
+import type { Options } from './Options';
 import DefaultOptions from './Options';
 import Action from './actions/Action';
 import BlotSpec from './specs/BlotSpec';
 
 const dontMerge = (destination: Array<any>, source: Array<any>) => source;
 
-export default class BlotResize {
+export default class BlotFormatter {
   quill: any;
-  options: BlotResizeOptions;
+  options: Options;
   currentSpec: ?BlotSpec;
   specs: BlotSpec[];
   overlay: HTMLElement;
   actions: Action[];
 
-  constructor(quill: any, options: $Shape<BlotResizeOptions> = {}) {
+  constructor(quill: any, options: $Shape<Options> = {}) {
     this.quill = quill;
     this.options = deepmerge(DefaultOptions, options, { arrayMerge: dontMerge });
     this.currentSpec = null;
     this.actions = [];
     this.overlay = document.createElement('div');
-    this.overlay.classList.add('blot-resize__overlay');
+    this.overlay.classList.add('blot-formatter__overlay');
     if (this.options.overlay.style) {
       Object.assign(this.overlay.style, this.options.overlay.style);
     }
