@@ -44,8 +44,7 @@
     "dev:babel": "babel --watch src/ --out-dir dist",
     "dev:webpack": "yarn dev:delay && webpack --progress --colors --watch",
     "dev:delay": "node -e \"setTimeout(() => {}, 3000)\"",
-    "prepublishOnly": "yarn build",
-    "release": "np",
+    "release": "yarn build && np",
     "start": "yarn clean && npm-run-all --race --parallel dev:babel dev:webpack"
   }
 }
