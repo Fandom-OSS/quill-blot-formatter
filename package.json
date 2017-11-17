@@ -3,7 +3,13 @@
   "version": "1.0.0",
   "description": "a module for the Quill text editor to allow blots to be resized",
   "main": "dist/index.js",
-  "author": "nmonterroso <nmonterroso@users.noreply.github.com>",
+  "contributors": [
+    {
+      "name": "Nelson Monterroso",
+      "email": "nmonterroso@users.noreply.github.com",
+      "url": "https://github.com/nmonterroso"
+    }
+  ],
   "license": "MIT",
   "dependencies": {
     "deepmerge": "^2.0.0"
@@ -22,19 +28,21 @@
     "eslint-plugin-flowtype": "^2.39.1",
     "eslint-plugin-import": "^2.7.0",
     "flow-bin": "^0.57.3",
+    "flow-copy-source": "^1.2.1",
     "npm-run-all": "^4.1.2",
     "quill": "^1.3.4",
     "rimraf": "^2.6.2",
     "webpack": "^3.8.1"
   },
   "scripts": {
+    "build": "yarn clean && yarn build:babel && yarn build:webpack && yarn build:copy-files",
+    "build:babel": "babel src/ --out-dir build",
+    "build:copy-files": "babel-node copy-files.js",
+    "build:webpack": "webpack -p --progress --colors",
     "clean": "rimraf build",
-    "start": "yarn clean && npm-run-all --race --parallel dev:babel dev:webpack",
     "dev:babel": "babel --watch src/ --out-dir build",
     "dev:webpack": "yarn dev:delay && webpack --progress --colors --watch",
     "dev:delay": "node -e \"setTimeout(() => {}, 3000)\"",
-    "build": "yarn clean && yarn build:babel && yarn build:webpack",
-    "build:babel": "babel src/ --out-dir build",
-    "build:webpack": "webpack -p --progress --colors"
+    "start": "yarn clean && npm-run-all --race --parallel dev:babel dev:webpack"
   }
 }

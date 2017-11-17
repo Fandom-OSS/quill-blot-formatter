@@ -1,5 +1,5 @@
 module.exports = {
-  entry: './build/BlotResize.js',
+  entry: './build/index.js',
   output: {
     filename: 'quill-blot-resize.min.js',
     path: `${__dirname}/build`,
