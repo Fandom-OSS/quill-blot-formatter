@@ -13,10 +13,7 @@ export default class AlignAction extends Action {
 
   constructor(formatter: BlotFormatter) {
     super(formatter);
-    this.aligner = new DefaultAligner(
-      formatter.options.align.aligner.applyStyle,
-      formatter.options.align.attribute,
-    );
+    this.aligner = new DefaultAligner(formatter.options.align);
     this.toolbar = new DefaultToolbar();
   }
 

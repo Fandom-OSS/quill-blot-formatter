@@ -8,27 +8,38 @@ import BlotSpec from './specs/BlotSpec';
 import ImageSpec from './specs/ImageSpec';
 import IframeVideoSpec from './specs/IframeVideoSpec';
 
+export type OverlayOptions = {
+  style: ?{},
+};
+
+export type ResizeOptions = {
+  handleStyle: ?{},
+};
+
+export type AlignOptions = {
+  attribute: string,
+  aligner: {
+    applyStyle: boolean,
+  },
+  icons: {
+    left: string,
+    center: string,
+    right: string,
+  },
+  toolbar: {
+    allowDeselect: boolean,
+    mainStyle: ?{},
+    buttonStyle: ?{},
+    svgStyle: ?{},
+  },
+};
+
 export type Options = {
   actions: Class<Action>[],
   specs: Class<BlotSpec>[],
-  overlay: {
-    style: ?{},
-  },
-  align: {
-    attribute: string,
-    aligner: {
-      applyStyle: boolean,
-    },
-    toolbar: {
-      allowDeselect: boolean,
-      mainStyle: ?{},
-      buttonStyle: ?{},
-      svgStyle: ?{},
-    },
-  },
-  resize: {
-    handleStyle: ?{},
-  },
+  overlay: OverlayOptions,
+  align: AlignOptions,
+  resize: ResizeOptions,
 };
 
 const DefaultOptions:Options = {
@@ -52,6 +63,29 @@ const DefaultOptions:Options = {
     attribute: 'data-align',
     aligner: {
       applyStyle: true,
+    },
+    icons: {
+      left: `
+        <svg viewbox="0 0 18 18">
+          <line class="ql-stroke" x1="3" x2="15" y1="9" y2="9"></line>
+          <line class="ql-stroke" x1="3" x2="13" y1="14" y2="14"></line>
+          <line class="ql-stroke" x1="3" x2="9" y1="4" y2="4"></line>
+        </svg>
+      `,
+      center: `
+        <svg viewbox="0 0 18 18">
+           <line class="ql-stroke" x1="15" x2="3" y1="9" y2="9"></line>
+          <line class="ql-stroke" x1="14" x2="4" y1="14" y2="14"></line>
+          <line class="ql-stroke" x1="12" x2="6" y1="4" y2="4"></line>
+        </svg>
+      `,
+      right: `
+        <svg viewbox="0 0 18 18">
+          <line class="ql-stroke" x1="15" x2="3" y1="9" y2="9"></line>
+          <line class="ql-stroke" x1="15" x2="5" y1="14" y2="14"></line>
+          <line class="ql-stroke" x1="15" x2="9" y1="4" y2="4"></line>
+        </svg>
+      `,
     },
     toolbar: {
       allowDeselect: true,
