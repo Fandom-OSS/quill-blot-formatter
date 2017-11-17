@@ -1,6 +1,6 @@
 {
   "name": "quill-blot-resize",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "a module for the Quill text editor to allow blots to be resized and realigned",
   "main": "dist/index.js",
   "contributors": [
@@ -37,15 +37,14 @@
   },
   "scripts": {
     "build": "yarn clean && yarn build:babel && yarn build:webpack && yarn build:copy-flow-source",
-    "build:babel": "yarn babel src/ --out-dir dist",
-    "build:copy-flow-source": "yarn flow-copy-source --verbose src dist",
-    "build:webpack": "yarn webpack -p --progress --colors",
-    "clean": "yarn rimraf dist",
-    "dev:babel": "yarn babel --watch src/ --out-dir dist",
+    "build:babel": "babel src/ --out-dir dist",
+    "build:copy-flow-source": "flow-copy-source --verbose src dist",
+    "build:webpack": "webpack -p --progress --colors",
+    "clean": "rimraf dist",
+    "dev:babel": "babel --watch src/ --out-dir dist",
     "dev:webpack": "yarn dev:delay && webpack --progress --colors --watch",
     "dev:delay": "node -e \"setTimeout(() => {}, 3000)\"",
-    "prepublish": "yarn build",
-    "release": "np",
+    "prepublishOnly": "yarn build",
     "start": "yarn clean && yarn npm-run-all --race --parallel dev:babel dev:webpack"
   }
 }
