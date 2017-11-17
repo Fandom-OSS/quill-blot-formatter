@@ -44,10 +44,6 @@ function readPackageJson() {
 
 function updatePackageJson(json) {
   delete json.devDependencies;
-  json.scripts = {
-    prepublishOnly: 'yarn install',
-  };
-
   return Promise.resolve(json);
 }
 
