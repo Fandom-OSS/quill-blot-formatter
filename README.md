@@ -120,6 +120,7 @@ const quill = new Quill(..., {
 });
 ```
 
-For all supported options as well as the default see [`Options`](https://github.com/Wikia/quill-blot-formatter/blob/master/src/Options.js).
-
-Note that object properties are merged, but array properties override the defaults.
+### Notes
+- For all supported options as well as the default see [`Options`](https://github.com/Wikia/quill-blot-formatter/blob/master/src/Options.js).
+- object properties are merged, but array properties override the defaults.
+- To completely disable styles (`overlay.style`, `resize.handleStyle`, etc) set those to `null`
