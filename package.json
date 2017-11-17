@@ -1,14 +1,24 @@
 {
-  "name": "quill-blot-resize",
+  "name": "quill-blot-formatter",
   "version": "0.0.6",
-  "description": "a module for the Quill text editor to allow blots to be resized and realigned",
+  "description": "a module for the Quill text editor to allow blots to be reformatted. Built in formatters: resize and realign. Built in blot support: images and iframe videos.",
   "main": "dist/index.js",
+  "homepage": "https://github.com/Wikia/quill-blot-formatter",
+  "bugs": {
+    "url": "https://github.com/Wikia/quill-blot-formatter/issues"
+  },
   "contributors": [
     {
       "name": "Nelson Monterroso",
       "email": "nmonterroso@users.noreply.github.com",
       "url": "https://github.com/nmonterroso"
     }
+  ],
+  "keywords": [
+    "quill",
+    "blot",
+    "image",
+    "resize"
   ],
   "license": "MIT",
   "dependencies": {
