@@ -62,6 +62,9 @@ When the spec is active this should return the element that is to be formatter
 ### `getOverlayTarget(): ?HTMLElement`
 When the spec is active this should return the element to display the formatting overlay. This defaults to `return getTargetElement()` since they will typically be the same element.
 
+### `setSelection(): void`
+After the spec is activated this should set the quill selection using [`setSelection`](https://quilljs.com/docs/api/#setselection). Defaults to `quill.setSelection(null)`.
+
 ### `onHide(): void`
 Called when the spec is deactivated by the user clicking away from the blot. Use this to clean up any state in the spec during activation.
 

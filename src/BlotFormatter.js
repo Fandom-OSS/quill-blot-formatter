@@ -38,7 +38,7 @@ export default class BlotFormatter {
 
   show(spec: BlotSpec) {
     this.currentSpec = spec;
-    this.quill.setSelection(null);
+    this.currentSpec.setSelection();
     this.setUserSelect('none');
     this.quill.root.parentNode.appendChild(this.overlay);
     this.repositionOverlay();

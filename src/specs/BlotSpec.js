@@ -9,19 +9,19 @@ export default class BlotSpec {
     this.formatter = formatter;
   }
 
-  // eslint-disable-next-line class-methods-use-this
   init(): void {}
 
-  // eslint-disable-next-line class-methods-use-this
   getTargetElement(): ?HTMLElement {
     return null;
   }
 
-  // eslint-disable-next-line class-methods-use-this
   getOverlayTarget(): ?HTMLElement {
     return this.getTargetElement();
   }
 
-  // eslint-disable-next-line class-methods-use-this
+  setSelection(): void {
+    this.formatter.quill.setSelection(null);
+  }
+
   onHide() {}
 }
