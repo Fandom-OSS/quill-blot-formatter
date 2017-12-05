@@ -14,6 +14,9 @@
       "url": "https://github.com/nmonterroso"
     }
   ],
+  "files": [
+    "dist"
+  ],
   "keywords": [
     "quill",
     "blot",
@@ -54,7 +57,7 @@
     "dev:babel": "babel --watch src/ --out-dir dist",
     "dev:webpack": "yarn dev:delay && webpack --progress --colors --watch",
     "dev:delay": "node -e \"setTimeout(() => {}, 3000)\"",
-    "prepublishOnly": "yarn build",
+    "release": "yarn build && np --yolo",
     "start": "yarn clean && yarn npm-run-all --race --parallel dev:babel dev:webpack"
   }
 }
