@@ -47,7 +47,6 @@ export default class UnclickableBlotSpec extends BlotSpec {
     this.unclickable = null;
   }
 
-  // eslint-disable-next-line class-methods-use-this
   createProxyImage(): HTMLElement {
     const canvas = document.createElement('canvas');
     const context = canvas.getContext('2d');

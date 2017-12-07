@@ -9,9 +9,9 @@ export default class Action {
     this.formatter = formatter;
   }
 
-  onCreate() {} // eslint-disable-line class-methods-use-this
+  onCreate() {}
 
-  onDestroy() {} // eslint-disable-line class-methods-use-this
+  onDestroy() {}
 
-  onUpdate() {} // eslint-disable-line class-methods-use-this
+  onUpdate() {}
 }

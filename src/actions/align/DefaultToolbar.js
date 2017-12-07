@@ -33,14 +33,12 @@ export default class DefaultToolbar implements Toolbar {
     return this.toolbar;
   }
 
-  // eslint-disable-next-line class-methods-use-this
   addToolbarStyle(formatter: BlotFormatter, toolbar: HTMLElement) {
     if (formatter.options.align.toolbar.mainStyle) {
       Object.assign(toolbar.style, formatter.options.align.toolbar.mainStyle);
     }
   }
 
-  // eslint-disable-next-line class-methods-use-this
   addButtonStyle(button: HTMLElement, index: number, formatter: BlotFormatter) {
     if (formatter.options.align.toolbar.buttonStyle) {
       Object.assign(button.style, formatter.options.align.toolbar.buttonStyle);
