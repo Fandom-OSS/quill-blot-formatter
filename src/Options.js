@@ -1,9 +1,5 @@
 // @flow
 
-import Action from './actions/Action';
-import AlignAction from './actions/align/AlignAction';
-import ResizeAction from './actions/ResizeAction';
-import DeleteAction from './actions/DeleteAction';
 import BlotSpec from './specs/BlotSpec';
 import ImageSpec from './specs/ImageSpec';
 import IframeVideoSpec from './specs/IframeVideoSpec';
@@ -35,7 +31,6 @@ export type AlignOptions = {
 };
 
 export type Options = {
-  actions: Class<Action>[],
   specs: Class<BlotSpec>[],
   overlay: OverlayOptions,
   align: AlignOptions,
@@ -43,11 +38,6 @@ export type Options = {
 };
 
 const DefaultOptions: Options = {
-  actions: [
-    AlignAction,
-    ResizeAction,
-    DeleteAction,
-  ],
   specs: [
     ImageSpec,
     IframeVideoSpec,

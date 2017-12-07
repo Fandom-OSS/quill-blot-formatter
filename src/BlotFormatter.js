@@ -42,7 +42,7 @@ export default class BlotFormatter {
     this.setUserSelect('none');
     this.quill.root.parentNode.appendChild(this.overlay);
     this.repositionOverlay();
-    this.createActions();
+    this.createActions(spec);
   }
 
   hide() {
@@ -63,8 +63,8 @@ export default class BlotFormatter {
     this.actions.forEach(action => action.onUpdate());
   }
 
-  createActions() {
-    this.actions = this.options.actions.map((ActionClass: Class<Action>) => {
+  createActions(spec: BlotSpec) {
+    this.actions = spec.getActions().map((ActionClass: Class<Action>) => {
       const action: Action = new ActionClass(this);
       action.onCreate();
       return action;

@@ -1,6 +1,10 @@
 // @flow
 
 import BlotFormatter from '../BlotFormatter';
+import Action from '../actions/Action';
+import AlignAction from '../actions/align/AlignAction';
+import ResizeAction from '../actions/ResizeAction';
+import DeleteAction from '../actions/DeleteAction';
 
 export default class BlotSpec {
   formatter: BlotFormatter;
@@ -10,6 +14,10 @@ export default class BlotSpec {
   }
 
   init(): void {}
+
+  getActions(): Class<Action>[] {
+    return [AlignAction, ResizeAction, DeleteAction];
+  }
 
   getTargetElement(): ?HTMLElement {
     return null;
