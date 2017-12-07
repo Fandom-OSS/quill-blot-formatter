@@ -16,7 +16,7 @@ export default class DefaultToolbar implements Toolbar {
 
   create(formatter: BlotFormatter, aligner: Aligner): HTMLElement {
     const toolbar = document.createElement('div');
-    toolbar.classList.add('blot-formatter__toolbar');
+    toolbar.classList.add(formatter.options.align.toolbar.mainClassName);
     this.addToolbarStyle(formatter, toolbar);
     this.addButtons(formatter, toolbar, aligner);
 
@@ -57,7 +57,7 @@ export default class DefaultToolbar implements Toolbar {
   addButtons(formatter: BlotFormatter, toolbar: HTMLElement, aligner: Aligner) {
     aligner.getAlignments().forEach((alignment, i) => {
       const button = document.createElement('span');
-      button.classList.add('blot-formatter__toolbar-button');
+      button.classList.add(formatter.options.align.toolbar.buttonClassName);
       button.innerHTML = alignment.icon;
       button.addEventListener('click', () => {
         this.onButtonClick(button, formatter, alignment, aligner);

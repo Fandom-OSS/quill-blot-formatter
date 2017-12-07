@@ -15,10 +15,10 @@ export default class ResizeAction extends Action {
 
   constructor(formatter: BlotFormatter) {
     super(formatter);
-    this.topLeftHandle = this.createHandle('top-left', 'nwse-resize', formatter.options.resize.handleStyle);
-    this.topRightHandle = this.createHandle('top-right', 'nesw-resize', formatter.options.resize.handleStyle);
-    this.bottomRightHandle = this.createHandle('bottom-right', 'nwse-resize', formatter.options.resize.handleStyle);
-    this.bottomLeftHandle = this.createHandle('bottom-left', 'nesw-resize', formatter.options.resize.handleStyle);
+    this.topLeftHandle = this.createHandle('top-left', 'nwse-resize');
+    this.topRightHandle = this.createHandle('top-right', 'nesw-resize');
+    this.bottomRightHandle = this.createHandle('bottom-right', 'nwse-resize');
+    this.bottomLeftHandle = this.createHandle('bottom-left', 'nesw-resize');
     this.dragHandle = null;
     this.dragStartX = 0;
     this.preDragWidth = 0;
@@ -42,13 +42,14 @@ export default class ResizeAction extends Action {
     this.formatter.overlay.removeChild(this.bottomLeftHandle);
   }
 
-  createHandle(position: string, cursor: string, handleStyle: ?{}): HTMLElement {
+  createHandle(position: string, cursor: string): HTMLElement {
     const box = document.createElement('div');
-    box.classList.add(`blot-formatter__resize-${position}`);
+    box.classList.add(this.formatter.options.resize.handleClassName);
+    box.setAttribute('data-position', position);
     box.style.cursor = cursor;
 
-    if (handleStyle) {
-      Object.assign(box.style, handleStyle);
+    if (this.formatter.options.resize.handleStyle) {
+      Object.assign(box.style, this.formatter.options.resize.handleStyle);
     }
 
     box.addEventListener('mousedown', this.onMouseDown);

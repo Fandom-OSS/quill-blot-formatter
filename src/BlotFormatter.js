@@ -22,7 +22,7 @@ export default class BlotFormatter {
     this.currentSpec = null;
     this.actions = [];
     this.overlay = document.createElement('div');
-    this.overlay.classList.add('blot-formatter__overlay');
+    this.overlay.classList.add(this.options.overlay.className);
     if (this.options.overlay.style) {
       Object.assign(this.overlay.style, this.options.overlay.style);
     }

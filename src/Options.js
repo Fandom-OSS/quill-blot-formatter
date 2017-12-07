@@ -5,10 +5,12 @@ import ImageSpec from './specs/ImageSpec';
 import IframeVideoSpec from './specs/IframeVideoSpec';
 
 export type OverlayOptions = {
+  className: string,
   style: ?{},
 };
 
 export type ResizeOptions = {
+  handleClassName: string,
   handleStyle: ?{},
 };
 
@@ -24,7 +26,9 @@ export type AlignOptions = {
   },
   toolbar: {
     allowDeselect: boolean,
+    mainClassName: string,
     mainStyle: ?{},
+    buttonClassName: string,
     buttonStyle: ?{},
     svgStyle: ?{},
   },
@@ -43,6 +47,7 @@ const DefaultOptions: Options = {
     IframeVideoSpec,
   ],
   overlay: {
+    className: 'blot-formatter__overlay',
     style: {
       position: 'absolute',
       boxSizing: 'border-box',
@@ -79,6 +84,7 @@ const DefaultOptions: Options = {
     },
     toolbar: {
       allowDeselect: true,
+      mainClassName: 'blot-formatter__toolbar',
       mainStyle: {
         position: 'absolute',
         top: '-12px',
@@ -93,6 +99,7 @@ const DefaultOptions: Options = {
         cursor: 'default',
         zIndex: '1',
       },
+      buttonClassName: 'blot-formatter__toolbar-button',
       buttonStyle: {
         display: 'inline-block',
         width: '24px',
@@ -112,6 +119,7 @@ const DefaultOptions: Options = {
     },
   },
   resize: {
+    handleClassName: 'blot-formatter__resize-handle',
     handleStyle: {
       position: 'absolute',
       height: '12px',
