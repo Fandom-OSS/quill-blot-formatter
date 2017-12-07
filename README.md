@@ -62,7 +62,7 @@ The [`actions`](#action) that are allowed on this blot. The default is `[AlignAc
 ### `getTargetElement(): ?HTMLElement`
 When the spec is active this should return the element that is to be formatter
 
-### `getOverlayTarget(): ?HTMLElement`
+### `getOverlayElement(): ?HTMLElement`
 When the spec is active this should return the element to display the formatting overlay. This defaults to `return getTargetElement()` since they will typically be the same element.
 
 ### `setSelection(): void`

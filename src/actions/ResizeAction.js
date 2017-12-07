@@ -80,7 +80,7 @@ export default class ResizeAction extends Action {
     }
 
     if (this.formatter.currentSpec) {
-      const target = this.formatter.currentSpec.getOverlayTarget();
+      const target = this.formatter.currentSpec.getOverlayElement();
       if (target) {
         target.style.cursor = value;
       }

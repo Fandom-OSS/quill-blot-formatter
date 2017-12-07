@@ -81,7 +81,7 @@ export default class BlotFormatter {
       return;
     }
 
-    const overlayTarget = this.currentSpec.getOverlayTarget();
+    const overlayTarget = this.currentSpec.getOverlayElement();
     if (!overlayTarget) {
       return;
     }

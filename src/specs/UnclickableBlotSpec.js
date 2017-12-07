@@ -37,7 +37,7 @@ export default class UnclickableBlotSpec extends BlotSpec {
     return this.unclickable;
   }
 
-  getOverlayTarget(): ?HTMLElement {
+  getOverlayElement(): ?HTMLElement {
     return this.unclickable;
   }
 

@@ -23,7 +23,7 @@ export default class BlotSpec {
     return null;
   }
 
-  getOverlayTarget(): ?HTMLElement {
+  getOverlayElement(): ?HTMLElement {
     return this.getTargetElement();
   }
 
