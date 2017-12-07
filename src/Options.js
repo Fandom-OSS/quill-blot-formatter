@@ -5,37 +5,55 @@ import ImageSpec from './specs/ImageSpec';
 import IframeVideoSpec from './specs/IframeVideoSpec';
 
 export type OverlayOptions = {
+  // classname applied to the overlay element
   className: string,
+  // style applied to overlay element, or null to prevent styles
   style: ?{},
 };
 
 export type ResizeOptions = {
+  // class name applied to the resize handles
   handleClassName: string,
+  // style applied to resize handles, or null to prevent styles
   handleStyle: ?{},
 };
 
 export type AlignOptions = {
+  // the name of the attribute for an element that has its alignment changed
   attribute: string,
+  // the aligner does the actual alignment switch
   aligner: {
-    applyStyle: boolean, // whether or not the aligner should handle the actual alignment properties
+    // whether or not the aligner should handle the actual alignment properties
+    applyStyle: boolean,
   },
+  // icons used for alignment
   icons: {
     left: string,
     center: string,
     right: string,
   },
+  // the toolbar so users can change alignments
   toolbar: {
+    // whether or not users can deselect an alignment. it's up to you to set the initial alignment
     allowDeselect: boolean,
+    // class name applied to the root toolbar element
     mainClassName: string,
+    // style applied to root toolbar element, or null to prevent styles
     mainStyle: ?{},
+    // class name applied to each button in the toolbar
     buttonClassName: string,
+    /* whether or not to add the selected style to the buttons.
+    they'll always get the is-selected class */
     addButtonSelectStyle: boolean,
+    // style applied to buttons, or null to prevent styles
     buttonStyle: ?{},
+    // style applied to the svgs in the buttons
     svgStyle: ?{},
   },
 };
 
 export type Options = {
+  // the BlotSpecs supported
   specs: Class<BlotSpec>[],
   overlay: OverlayOptions,
   align: AlignOptions,
