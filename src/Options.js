@@ -29,6 +29,7 @@ export type AlignOptions = {
     mainClassName: string,
     mainStyle: ?{},
     buttonClassName: string,
+    addButtonSelectStyle: boolean,
     buttonStyle: ?{},
     svgStyle: ?{},
   },
@@ -100,6 +101,7 @@ const DefaultOptions: Options = {
         zIndex: '1',
       },
       buttonClassName: 'blot-formatter__toolbar-button',
+      addButtonSelectStyle: true,
       buttonStyle: {
         display: 'inline-block',
         width: '24px',

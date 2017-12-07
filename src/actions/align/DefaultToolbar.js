@@ -85,7 +85,7 @@ export default class DefaultToolbar implements Toolbar {
     }
 
     if (aligner.isAligned(target, alignment)) {
-      this.selectButton(button);
+      this.selectButton(formatter, button);
     }
   }
 
@@ -114,28 +114,32 @@ export default class DefaultToolbar implements Toolbar {
     alignment: Alignment,
     aligner: Aligner,
   ) {
-    this.buttons.forEach(this.deselectButton);
+    this.buttons.forEach((b) => { this.deselectButton(formatter, b); });
     if (aligner.isAligned(alignTarget, alignment)) {
       if (formatter.options.align.toolbar.allowDeselect) {
         aligner.clear(alignTarget);
       } else {
-        this.selectButton(button);
+        this.selectButton(formatter, button);
       }
     } else {
-      this.selectButton(button);
+      this.selectButton(formatter, button);
       alignment.apply(alignTarget);
     }
 
     formatter.update();
   }
 
-  // eslint-disable-next-line class-methods-use-this
-  selectButton(button: HTMLElement) {
-    button.style.filter = 'invert(20%)'; // eslint-disable-line no-param-reassign
+  selectButton(formatter: BlotFormatter, button: HTMLElement) {
+    button.classList.add('is-selected');
+    if (formatter.options.align.toolbar.addButtonSelectStyle) {
+      button.style.setProperty('filter', 'invert(20%)');
+    }
   }
 
-  // eslint-disable-next-line class-methods-use-this
-  deselectButton(button: HTMLElement) {
-    button.style.filter = ''; // eslint-disable-line no-param-reassign
+  deselectButton(formatter: BlotFormatter, button: HTMLElement) {
+    button.classList.remove('is-selected');
+    if (formatter.options.align.toolbar.addButtonSelectStyle) {
+      button.style.removeProperty('filter');
+    }
   }
 }
