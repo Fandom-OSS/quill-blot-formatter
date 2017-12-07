@@ -56,6 +56,9 @@ The [`BlotSpec`](https://github.com/Wikia/quill-blot-formatter/blob/master/src/s
 ### `init(): void`
 Called after all specs have been constructed. Use this to bind to quill events to determine when to activate a specific spec.
 
+### `getActions(): Class<Action>[]`
+The [`actions`](#action) that are allowed on this blot. The default is `[AlignAction, ResizeAction, DeleteAction]`.
+
 ### `getTargetElement(): ?HTMLElement`
 When the spec is active this should return the element that is to be formatter
 
@@ -102,16 +105,18 @@ import ImageSpec from 'quill-blot-formatter/dist/specs/ImageSpec';
 
 Quill.register('modules/blotFormatter', BlotFormatter);
 
+class CustomImageSpec extends ImageSpec {
+    getActions() {
+        return [AlignAction, DeleteAction];
+    }
+}
+
 const quill = new Quill(..., {
   modules: {
     ...
     blotFormatter: {
-      actions: [
-        AlignAction,
-        DeleteAction,
-      ],
       specs: [
-        ImageSpec,
+        CustomImageSpec,
       ],
       overlay: {
         style: {
