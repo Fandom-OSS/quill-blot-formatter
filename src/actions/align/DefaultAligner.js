@@ -1,29 +1,21 @@
 // @flow
 
-import Quill from 'quill';
 import { Aligner } from './Aligner';
 import type { Alignment } from './Alignment';
 import type { AlignOptions } from '../../Options';
 
-const Parchment = Quill.imports.parchment;
 const LEFT_ALIGN = 'left';
 const CENTER_ALIGN = 'center';
 const RIGHT_ALIGN = 'right';
 
 export default class DefaultAligner implements Aligner {
   alignments: { [string]: Alignment };
-  floatStyle: any;
-  marginStyle: any;
-  displayStyle: any;
-  alignAttribute: any;
+  alignAttribute: string;
   applyStyle: boolean;
 
   constructor(options: AlignOptions) {
     this.applyStyle = options.aligner.applyStyle;
-    this.floatStyle = new Parchment.Attributor.Style('float', 'float');
-    this.marginStyle = new Parchment.Attributor.Style('margin', 'margin');
-    this.displayStyle = new Parchment.Attributor.Style('display', 'display');
-    this.alignAttribute = new Parchment.Attributor.Attribute(options.attribute, options.attribute);
+    this.alignAttribute = options.attribute;
     this.alignments = {
       [LEFT_ALIGN]: {
         name: LEFT_ALIGN,
@@ -57,32 +49,23 @@ export default class DefaultAligner implements Aligner {
   }
 
   clear(el: HTMLElement): void {
-    this.alignAttribute.remove(el);
-    if (this.applyStyle) {
-      this.floatStyle.remove(el);
-      this.displayStyle.remove(el);
-      this.marginStyle.remove(el);
-    }
+    el.removeAttribute(this.alignAttribute);
+    this.setStyle(el, null, null, null);
   }
 
   isAligned(el: HTMLElement, alignment: Alignment): boolean {
-    return this.alignAttribute.value(el) === alignment.name;
+    return el.getAttribute(this.alignAttribute) === alignment.name;
   }
 
   setAlignment(el: HTMLElement, value: string) {
-    this.alignAttribute.add(el, value);
+    el.setAttribute(this.alignAttribute, value);
   }
 
-  setStyle(el: HTMLElement, display: string, float: ?string, margin: string) {
+  setStyle(el: HTMLElement, display: ?string, float: ?string, margin: ?string) {
     if (this.applyStyle) {
-      this.displayStyle.add(el, display);
-      this.marginStyle.add(el, margin);
-
-      if (float) {
-        this.floatStyle.add(el, float);
-      } else {
-        this.floatStyle.remove(el);
-      }
+      el.style.setProperty('display', display);
+      el.style.setProperty('float', float);
+      el.style.setProperty('margin', margin);
     }
   }
 }

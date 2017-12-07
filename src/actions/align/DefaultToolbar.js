@@ -109,21 +109,21 @@ export default class DefaultToolbar implements Toolbar {
 
   clickButton(
     button: HTMLElement,
-    resizeTarget: HTMLElement,
+    alignTarget: HTMLElement,
     formatter: BlotFormatter,
     alignment: Alignment,
     aligner: Aligner,
   ) {
     this.buttons.forEach(this.deselectButton);
-    if (aligner.isAligned(resizeTarget, alignment)) {
+    if (aligner.isAligned(alignTarget, alignment)) {
       if (formatter.options.align.toolbar.allowDeselect) {
-        aligner.clear(resizeTarget);
+        aligner.clear(alignTarget);
       } else {
         this.selectButton(button);
       }
     } else {
       this.selectButton(button);
-      alignment.apply(resizeTarget);
+      alignment.apply(alignTarget);
     }
 
     formatter.update();
