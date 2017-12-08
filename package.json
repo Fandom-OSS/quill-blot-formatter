@@ -1,6 +1,6 @@
 {
   "name": "quill-blot-formatter",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "a module for the Quill text editor to allow blots to be reformatted. Built in formatters: resize and realign. Built in blot support: images and iframe videos.",
   "main": "dist/index.js",
   "homepage": "https://github.com/Wikia/quill-blot-formatter",
