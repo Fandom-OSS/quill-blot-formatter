@@ -6,8 +6,14 @@ A [quill](https://quilljs.com/) module to format document [blots](https://github
 [demo](https://www.webpackbin.com/bins/-L-n-voavymhiglO1fM2)
 
 ## Installation
+Using `yarn`:
 ```
-yarn install quill-blot-formatter
+yarn add quill-blot-formatter
+```
+
+Using `npm`:
+```
+npm install --save quill-blot-formatter
 ```
 
 ## Usage
