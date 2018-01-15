@@ -2,8 +2,8 @@
   "name": "quill-blot-formatter",
   "version": "1.0.2",
   "description": "a module for the Quill text editor to allow blots to be reformatted. Built in formatters: resize and realign. Built in blot support: images and iframe videos.",
-  "main": "dist/index.js",
-  "types": "./index.d.ts",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "homepage": "https://github.com/Fandom-OSS/quill-blot-formatter",
   "bugs": {
     "url": "https://github.com/Fandom-OSS/quill-blot-formatter/issues"
@@ -41,6 +41,7 @@
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-preset-env": "^1.6.1",
     "babel-preset-flow": "^6.23.0",
+    "copyfiles": "^1.2.0",
     "eslint": "^4.9.0",
     "eslint-config-airbnb-base": "^12.1.0",
     "eslint-plugin-flowtype": "^2.39.1",
@@ -53,9 +54,10 @@
     "webpack": "^3.8.1"
   },
   "scripts": {
-    "build": "yarn clean && yarn build:babel && yarn build:webpack && yarn build:copy-flow-source",
+    "build": "yarn clean && yarn build:babel && yarn build:webpack && yarn build:copy-flow-source && yarn build:copy-ts-defs",
     "build:babel": "babel src/ --out-dir dist",
     "build:copy-flow-source": "flow-copy-source --verbose src dist",
+    "build:copy-ts-defs": "copyfiles index.d.ts dist",
     "build:webpack": "webpack -p --progress --colors",
     "clean": "rimraf dist",
     "dev:babel": "babel --watch src/ --out-dir dist",
