@@ -135,13 +135,10 @@ export default class ResizeAction extends Action {
 
     const newHeight = this.targetRatio * newWidth;
 
-    if (target.hasAttribute('width')) {
-      target.setAttribute('width', `${newWidth}`);
-      target.setAttribute('height', `${newHeight}`);
-    } else {
-      target.style.width = `${newWidth}px`;
-      target.style.height = `${newHeight}px`;
-    }
+    target.setAttribute('width', `${newWidth}`);
+    target.setAttribute('height', `${newHeight}`);
+    target.style.width = `${newWidth}px`;
+    target.style.height = `${newHeight}px`;
 
     this.formatter.update();
   };
