@@ -137,8 +137,6 @@ export default class ResizeAction extends Action {
 
     target.setAttribute('width', `${newWidth}`);
     target.setAttribute('height', `${newHeight}`);
-    target.style.width = `${newWidth}px`;
-    target.style.height = `${newHeight}px`;
 
     this.formatter.update();
   };
