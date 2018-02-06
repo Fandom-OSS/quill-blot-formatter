@@ -66,7 +66,7 @@ export interface Alignment {
 
 export interface Options {
     // the BlotSpecs supported
-    specs: BlotSpec[];
+    specs: (typeof BlotSpec)[];
     overlay: OverlayOptions;
     align: AlignOptions;
     resize: ResizeOptions;
@@ -86,7 +86,7 @@ export class BlotSpec {
     constructor(formatter: BlotFormatter);
 
     init(): void;
-    getActions(): Action[];
+    getActions(): (typeof Action)[];
     getTargetElement(): HTMLElement | null;
     getOverlayElement(): HTMLElement | null;
     setSelection(): void;
