@@ -3,7 +3,7 @@
 A [quill](https://quilljs.com/) module to format document [blots](https://github.com/quilljs/parchment#blots). Heavily inspired by [quill-image-resize-module](https://github.com/kensnyder/quill-image-resize-module). Out of the box supports resizing and realigning images and iframe videos, but can be easily extended using [`BlotSpec`](#blotspec) and [`Action`](#action).
 
 ## Demo
-[demo](https://www.webpackbin.com/bins/-L-n-voavymhiglO1fM2)
+[demo](https://codesandbox.io/s/4wnwllnnl9)
 
 ## Installation
 Using `yarn`:
@@ -49,9 +49,10 @@ const quill = new Quill(..., {
   Quill.register('modules/blotFormatter', QuillBlotFormatter.default);
   const quill = new Quill(..., {
       modules: {
-      ...
-      blotFormatter: {
-        // see config options below
+          ...
+          blotFormatter: {
+            // see config options below
+          }
       }
     }
   });
