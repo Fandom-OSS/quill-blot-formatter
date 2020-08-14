@@ -55,6 +55,7 @@ export default class UnclickableBlotSpec extends BlotSpec {
 
     this.proxyImage = document.createElement('img');
     this.proxyImage.src = canvas.toDataURL('image/png');
+    this.proxyImage.alt = '';
     this.proxyImage.classList.add(PROXY_IMAGE_CLASS);
 
     Object.assign(this.proxyImage.style, {
