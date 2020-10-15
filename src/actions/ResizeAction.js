@@ -32,6 +32,7 @@ export default class ResizeAction extends Action {
     this.formatter.overlay.appendChild(this.bottomLeftHandle);
 
     this.repositionHandles(this.formatter.options.resize.handleStyle);
+    this.toggleUserSelect(false);
   }
 
   onDestroy() {
@@ -40,6 +41,7 @@ export default class ResizeAction extends Action {
     this.formatter.overlay.removeChild(this.topRightHandle);
     this.formatter.overlay.removeChild(this.bottomRightHandle);
     this.formatter.overlay.removeChild(this.bottomLeftHandle);
+    this.toggleUserSelect(true);
   }
 
   createHandle(position: string, cursor: string): HTMLElement {
@@ -146,4 +148,27 @@ export default class ResizeAction extends Action {
     document.removeEventListener('mousemove', this.onDrag);
     document.removeEventListener('mouseup', this.onMouseUp);
   };
+
+  toggleUserSelect(enabled: boolean) {
+    if (enabled) {
+      document.body.style.setProperty("-moz-user-select", "auto");
+      document.body.style.setProperty("-webkit-user-select", "auto");
+      document.body.style.setProperty("-ms-user-select", "auto");
+      document.body.style.setProperty("-o-user-select", "auto");
+      document.body.style.setProperty("user-select", "auto");
+      document.onselectstart = () => true;
+      document.onselect = () => true;
+      document.onselectionchange = () => true;
+      return;
+    }
+
+    document.body.style.setProperty("-moz-user-select", "none");
+    document.body.style.setProperty("-webkit-user-select", "none");
+    document.body.style.setProperty("-ms-user-select", "none");
+    document.body.style.setProperty("-o-user-select", "none");
+    document.body.style.setProperty("user-select", "none");
+    document.onselectstart = () => false;
+    document.onselect = () => false;
+    document.onselectionchange = () => false;
+  }
 }
