@@ -32,7 +32,6 @@ export default class ResizeAction extends Action {
     this.formatter.overlay.appendChild(this.bottomLeftHandle);
 
     this.repositionHandles(this.formatter.options.resize.handleStyle);
-    this.toggleUserSelect(false);
   }
 
   onDestroy() {
@@ -41,7 +40,6 @@ export default class ResizeAction extends Action {
     this.formatter.overlay.removeChild(this.topRightHandle);
     this.formatter.overlay.removeChild(this.bottomRightHandle);
     this.formatter.overlay.removeChild(this.bottomLeftHandle);
-    this.toggleUserSelect(true);
   }
 
   createHandle(position: string, cursor: string): HTMLElement {
@@ -126,6 +124,8 @@ export default class ResizeAction extends Action {
       return;
     }
 
+    this.toggleUserSelect(false);
+
     const deltaX = event.clientX - this.dragStartX;
     let newWidth = 0;
 
@@ -145,6 +145,7 @@ export default class ResizeAction extends Action {
 
   onMouseUp = () => {
     this.setCursor('');
+    this.toggleUserSelect(true);
     document.removeEventListener('mousemove', this.onDrag);
     document.removeEventListener('mouseup', this.onMouseUp);
   };
