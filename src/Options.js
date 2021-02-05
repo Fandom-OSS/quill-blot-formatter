@@ -15,7 +15,7 @@ export type ResizeOptions = {
   // class name applied to the resize handles
   handleClassName: string,
   // style applied to resize handles, or null to prevent styles
-  handleStyle: ?{},
+  handleStyle: ?{ width: string, height: string },
 };
 
 export type AlignOptions = {

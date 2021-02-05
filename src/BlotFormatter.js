@@ -116,7 +116,7 @@ export default class BlotFormatter {
     });
   }
 
-  onClick = () => {
+  onClick: () => void = () => {
     this.hide();
   }
 }

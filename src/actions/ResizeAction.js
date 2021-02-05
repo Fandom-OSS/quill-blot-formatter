@@ -57,7 +57,7 @@ export default class ResizeAction extends Action {
     return box;
   }
 
-  repositionHandles(handleStyle: ?{}) {
+  repositionHandles(handleStyle: ?{ width: string, height: string }) {
     let handleXOffset = '0px';
     let handleYOffset = '0px';
     if (handleStyle) {
@@ -88,7 +88,7 @@ export default class ResizeAction extends Action {
     }
   }
 
-  onMouseDown = (event: MouseEvent) => {
+  onMouseDown: (ev: MouseEvent) => void = (event: MouseEvent) => {
     if (!(event.target instanceof HTMLElement)) {
       return;
     }
@@ -114,7 +114,7 @@ export default class ResizeAction extends Action {
     document.addEventListener('mouseup', this.onMouseUp);
   };
 
-  onDrag = (event: MouseEvent) => {
+  onDrag: (ev: MouseEvent) => void = (event: MouseEvent) => {
     if (!this.formatter.currentSpec) {
       return;
     }
@@ -141,7 +141,7 @@ export default class ResizeAction extends Action {
     this.formatter.update();
   };
 
-  onMouseUp = () => {
+  onMouseUp: () => void = () => {
     this.setCursor('');
     document.removeEventListener('mousemove', this.onDrag);
     document.removeEventListener('mouseup', this.onMouseUp);
