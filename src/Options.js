@@ -142,12 +142,14 @@ const DefaultOptions: Options = {
     handleClassName: 'blot-formatter__resize-handle',
     handleStyle: {
       position: 'absolute',
-      height: '12px',
-      width: '12px',
+      height: '24px',
+      width: '24px',
+      borderRadius: '50%',
       backgroundColor: 'white',
-      border: '1px solid #777',
+      border: '3px solid #ccc',
       boxSizing: 'border-box',
       opacity: '0.80',
+      touchAction: 'none',
     },
   },
 };
