@@ -29,7 +29,7 @@ export default class DefaultToolbar implements Toolbar {
     this.buttons = [];
   }
 
-  getElement() {
+  getElement(): ?HTMLElement {
     return this.toolbar;
   }
 

@@ -99,7 +99,7 @@ export class IframeVideoSpec extends UnclickableBlotSpec {
 
 export class ImageSpec extends BlotSpec {
     img?: HTMLElement;
-    onClick: ((event: MouseEvent) => void);
+    onClick: ((event: PointerEvent) => void);
 
     constructor(formatter: BlotFormatter);
 
@@ -172,8 +172,8 @@ export class ResizeAction extends Action {
     dragStartX: number;
     preDragWidth: number;
     targetRatio: number;
-    onMouseDown: ((event: MouseEvent) => void);
-    onDrag: ((event: MouseEvent) => void);
+    onMouseDown: ((event: PointerEvent) => void);
+    onDrag: ((event: PointerEvent) => void);
     onMouseUp: (() => void);
 
     createHandle(position: string, cursor: string): HTMLElement;

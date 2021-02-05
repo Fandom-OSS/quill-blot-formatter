@@ -86,15 +86,15 @@ export default class UnclickableBlotSpec extends BlotSpec {
     );
   }
 
-  onTextChange = () => {
+  onTextChange: () => void = () => {
     Array.from(document.querySelectorAll(`${this.selector}:not([${MOUSE_ENTER_ATTRIBUTE}])`))
       .forEach((unclickable) => {
         unclickable.setAttribute(MOUSE_ENTER_ATTRIBUTE, 'true');
-        unclickable.addEventListener('mouseenter', this.onMouseEnter);
+        unclickable.addEventListener('pointerenter', this.onMouseEnter);
       });
   };
 
-  onMouseEnter = (event: MouseEvent) => {
+  onMouseEnter: (ev: PointerEvent) => void = (event: PointerEvent) => {
     const unclickable = event.target;
     if (!(unclickable instanceof HTMLElement)) {
       return;
@@ -104,7 +104,7 @@ export default class UnclickableBlotSpec extends BlotSpec {
     this.repositionProxyImage(this.nextUnclickable);
   }
 
-  onProxyImageClick = () => {
+  onProxyImageClick: () => void = () => {
     this.unclickable = this.nextUnclickable;
     this.nextUnclickable = null;
     this.formatter.show(this);

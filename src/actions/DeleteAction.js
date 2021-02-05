@@ -14,7 +14,7 @@ export default class DeleteAction extends Action {
     this.formatter.quill.root.removeEventListener('input', this.onKeyUp);
   }
 
-  onKeyUp = (e: KeyboardEvent) => {
+  onKeyUp: (ev: KeyboardEvent) => void = (e: KeyboardEvent) => {
     if (!this.formatter.currentSpec) {
       return;
     }
