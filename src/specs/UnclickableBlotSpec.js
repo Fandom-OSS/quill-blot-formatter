@@ -90,11 +90,11 @@ export default class UnclickableBlotSpec extends BlotSpec {
     Array.from(document.querySelectorAll(`${this.selector}:not([${MOUSE_ENTER_ATTRIBUTE}])`))
       .forEach((unclickable) => {
         unclickable.setAttribute(MOUSE_ENTER_ATTRIBUTE, 'true');
-        unclickable.addEventListener('mouseenter', this.onMouseEnter);
+        unclickable.addEventListener('pointerenter', this.onMouseEnter);
       });
   };
 
-  onMouseEnter: (ev: MouseEvent) => void = (event: MouseEvent) => {
+  onMouseEnter: (ev: PointerEvent) => void = (event: PointerEvent) => {
     const unclickable = event.target;
     if (!(unclickable instanceof HTMLElement)) {
       return;
