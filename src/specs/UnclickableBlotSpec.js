@@ -1,7 +1,7 @@
 // @flow
 
 import BlotSpec from './BlotSpec';
-import BlotFormatter from '../BlotFormatter';
+import type BlotFormatter from '../BlotFormatter';
 
 const MOUSE_ENTER_ATTRIBUTE = 'data-blot-formatter-unclickable-bound';
 const PROXY_IMAGE_CLASS = 'blot-formatter__proxy-image';

@@ -1,6 +1,6 @@
 // @flow
 
-import { Aligner } from './Aligner';
+import type { Aligner } from './Aligner';
 import type { Alignment } from './Alignment';
 import type { AlignOptions } from '../../Options';
 

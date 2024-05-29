@@ -1,6 +1,6 @@
 // @flow
 
-import BlotFormatter from '../BlotFormatter';
+import type BlotFormatter from '../BlotFormatter';
 
 export default class Action {
   formatter: BlotFormatter;

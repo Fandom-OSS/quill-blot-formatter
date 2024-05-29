@@ -1,7 +1,7 @@
 // @flow
 
 import Action from './Action';
-import BlotFormatter from '../BlotFormatter';
+import type BlotFormatter from '../BlotFormatter';
 
 export default class ResizeAction extends Action {
   topLeftHandle: HTMLElement;

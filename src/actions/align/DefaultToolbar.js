@@ -1,9 +1,9 @@
 // @flow
 
-import { Toolbar } from './Toolbar';
-import { Aligner } from './Aligner';
+import type { Toolbar } from './Toolbar';
+import type { Aligner } from './Aligner';
 import type { Alignment } from './Alignment';
-import BlotFormatter from '../../BlotFormatter';
+import type BlotFormatter from '../../BlotFormatter';
 
 export default class DefaultToolbar implements Toolbar {
   toolbar: ?HTMLElement;

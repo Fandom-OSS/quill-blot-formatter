@@ -1,7 +1,7 @@
 // @flow
 
-import BlotFormatter from '../BlotFormatter';
-import Action from '../actions/Action';
+import type BlotFormatter from '../BlotFormatter';
+import type Action from '../actions/Action';
 import AlignAction from '../actions/align/AlignAction';
 import ResizeAction from '../actions/ResizeAction';
 import DeleteAction from '../actions/DeleteAction';
