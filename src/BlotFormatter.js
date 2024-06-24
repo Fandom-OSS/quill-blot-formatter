@@ -3,8 +3,8 @@
 import deepmerge from 'deepmerge';
 import type { Options } from './Options';
 import DefaultOptions from './Options';
-import Action from './actions/Action';
-import BlotSpec from './specs/BlotSpec';
+import type Action from './actions/Action';
+import type BlotSpec from './specs/BlotSpec';
 
 const dontMerge = (destination: Array<any>, source: Array<any>) => source;
 

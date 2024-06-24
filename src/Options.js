@@ -1,6 +1,6 @@
 // @flow
 
-import BlotSpec from './specs/BlotSpec';
+import type BlotSpec from './specs/BlotSpec';
 import ImageSpec from './specs/ImageSpec';
 import IframeVideoSpec from './specs/IframeVideoSpec';
 

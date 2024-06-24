@@ -1,7 +1,7 @@
 // @flow
 
 import BlotSpec from './BlotSpec';
-import BlotFormatter from '../BlotFormatter';
+import type BlotFormatter from '../BlotFormatter';
 
 const MOUSE_ENTER_ATTRIBUTE = 'data-blot-formatter-unclickable-bound';
 const PROXY_IMAGE_CLASS = 'blot-formatter__proxy-image';
@@ -55,6 +55,7 @@ export default class UnclickableBlotSpec extends BlotSpec {
 
     this.proxyImage = document.createElement('img');
     this.proxyImage.src = canvas.toDataURL('image/png');
+    this.proxyImage.alt = '';
     this.proxyImage.classList.add(PROXY_IMAGE_CLASS);
 
     Object.assign(this.proxyImage.style, {
